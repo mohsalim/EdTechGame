@@ -18,6 +18,7 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+!EdTechGame.sln
 *.suo
 *.tmp
 *.user
