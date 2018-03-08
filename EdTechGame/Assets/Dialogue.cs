@@ -16,5 +16,4 @@ public class Dialogue
     /// </summary>
     [TextArea(3, 10)]
     public string[] sentences;
-
 }
