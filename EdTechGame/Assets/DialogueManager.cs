@@ -35,33 +35,54 @@ public class DialogueManager : MonoBehaviour
     {
         UnityEngine.Debug.Log("Starting dialogue for NPC: " + dialogue.name);
 
+        // Open the the box. TODO Should we do this after we've cleared the sentences and updated the names?
         animator.SetBool("IsOpen", true);
 
-        nameText.text = dialogue.name;
-
+        // Clear out the current queue.
         sentences.Clear();
 
+        // Update the NPC's name.
+        nameText.text = dialogue.name;
+
+        // Enqueue the sentences from the given dialogue.
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
 
+        // Start displaying the new sentences.
         DisplayNextSentence();
     }
 
+    /// <summary>
+    /// Display next senetence in queue.
+    /// </summary>
     public void DisplayNextSentence()
     {
+        // If there are no more sentences.
         if (sentences.Count == 0)
         {
+            // Then end the dialogue and return.
             EndDialogue();
             return;
         }
 
+        // Get the next sentence in the queue.
         string sentence = sentences.Dequeue();
+
+        // Stop other coroutines (say if the user is clicking the "Continue" button too fast).
         StopAllCoroutines();
+
+        // Start a new coroutine to type out the sentence.
         StartCoroutine(TypeSentence(sentence));
     }
 
+    /// <summary>
+    /// Iterator to type out each sentence character at a time.
+    /// Gives the feel that the NPC is actually speaking to you via text.
+    /// </summary>
+    /// <param name="sentence"></param>
+    /// <returns></returns>
     IEnumerator TypeSentence(string sentence)
     {
         dialogueText.text = "";
@@ -72,6 +93,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// End dialogue by closing the the box.
+    /// </summary>
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
