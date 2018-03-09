@@ -12,19 +12,37 @@ using UnityEngine.UI;
 /// </summary>
 public class DialogueManager : MonoBehaviour
 {
-    public Text nameText;
-    public Text dialogueText;
+    /// <summary>
+    /// Name of flag for tracking if the dialogue box is open or closed.
+    /// </summary>
+    private const string IS_OPEN_FLAG = "IsOpen";
 
-    public Animator animator;
+    /// <summary>
+    /// Text for NPC's name.
+    /// </summary>
+    public Text NameText;
 
-    private Queue<string> sentences;
+    /// <summary>
+    /// Text for current sentence.
+    /// </summary>
+    public Text DialogueText;
+
+    /// <summary>
+    /// Animator for opening/closing dialogue box.
+    /// </summary>
+    public Animator AnimatorInterface;
+
+    /// <summary>
+    /// Queue of setences.
+    /// </summary>
+    private Queue<string> Sentences;
 
     /// <summary>
     /// Use this for initialization 
     /// </summary>
     void Start()
     {
-        sentences = new Queue<string>();
+        Sentences = new Queue<string>();
     }
 
     /// <summary>
@@ -36,18 +54,18 @@ public class DialogueManager : MonoBehaviour
         UnityEngine.Debug.Log("Starting dialogue for NPC: " + dialogue.name);
 
         // Open the the box. TODO Should we do this after we've cleared the sentences and updated the names?
-        animator.SetBool("IsOpen", true);
+        AnimatorInterface.SetBool(IS_OPEN_FLAG, true);
 
         // Clear out the current queue.
-        sentences.Clear();
+        Sentences.Clear();
 
         // Update the NPC's name.
-        nameText.text = dialogue.name;
+        NameText.text = dialogue.name;
 
         // Enqueue the sentences from the given dialogue.
         foreach (string sentence in dialogue.sentences)
         {
-            sentences.Enqueue(sentence);
+            Sentences.Enqueue(sentence);
         }
 
         // Start displaying the new sentences.
@@ -55,12 +73,12 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Display next senetence in queue.
+    /// Display next sentence in queue.
     /// </summary>
     public void DisplayNextSentence()
     {
         // If there are no more sentences.
-        if (sentences.Count == 0)
+        if (Sentences.Count == 0)
         {
             // Then end the dialogue and return.
             EndDialogue();
@@ -68,7 +86,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         // Get the next sentence in the queue.
-        string sentence = sentences.Dequeue();
+        string sentence = Sentences.Dequeue();
 
         // Stop other coroutines (say if the user is clicking the "Continue" button too fast).
         StopAllCoroutines();
@@ -85,10 +103,12 @@ public class DialogueManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator TypeSentence(string sentence)
     {
-        dialogueText.text = "";
+        UnityEngine.Debug.Log("Typing sentence: " + sentence);
+
+        DialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
+            DialogueText.text += letter;
             yield return null;
         }
     }
@@ -98,7 +118,8 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     void EndDialogue()
     {
-        animator.SetBool("IsOpen", false);
+        UnityEngine.Debug.Log("Ending dialogue.");
+        AnimatorInterface.SetBool(IS_OPEN_FLAG, false);
     }
 
     int RunCode(string code)
