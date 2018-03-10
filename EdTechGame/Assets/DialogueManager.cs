@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     /// <summary>
     /// Name of flag for tracking if the dialogue box is open or closed.
     /// </summary>
-    private const string IS_OPEN_FLAG = "IsOpen";
+    private const string IS_OPEN_FLAG = "IsDialogueOpen";
 
     /// <summary>
     /// Text for NPC's name.
@@ -120,44 +120,8 @@ public class DialogueManager : MonoBehaviour
     {
         UnityEngine.Debug.Log("Ending dialogue.");
         AnimatorInterface.SetBool(IS_OPEN_FLAG, false);
-    }
 
-    int RunCode(string code)
-    {
-        // TODO Rename this am.Name
-
-        AppDomain appDomain = AppDomain.CurrentDomain;
-        AssemblyName assemblyName = new AssemblyName();
-        assemblyName.Name = "TestAsm";
-        AssemblyBuilder assemblyBuilder = appDomain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Save);
-        ModuleBuilder moduleBuilder = assemblyBuilder.DefineDynamicModule("testmod", "TestAsm.exe");
-        TypeBuilder typeBuilder = moduleBuilder.DefineType("mytype", TypeAttributes.Public);
-        MethodBuilder methodBuilder = typeBuilder.DefineMethod("hi", MethodAttributes.Public | MethodAttributes.Static, null, null);
-        assemblyBuilder.SetEntryPoint(methodBuilder);
-
-        ILGenerator ilGenerator = methodBuilder.GetILGenerator();
-        ilGenerator.EmitWriteLine("Hello World");
-        ilGenerator.Emit(OpCodes.Ret);
-        typeBuilder.CreateType();
-        assemblyBuilder.Save("TestAsm.exe");
-
-        // Prepare the process to run.
-        ProcessStartInfo start = new ProcessStartInfo();
-        // Enter the executable to run, including the complete path.
-        start.FileName = "TestAsm.exe";
-        start.WindowStyle = ProcessWindowStyle.Hidden;
-        start.CreateNoWindow = true;
-
-        // Run the external process & wait for it to finish
-        int exitCode;
-        using (Process process = Process.Start(start))
-        {
-            process.WaitForExit();
-
-            // Retrieve the app's exit code
-            exitCode = process.ExitCode;
-        }
-
-        return exitCode;
+        // TODO Doesn't transition input in correctly. States may need to be reorganize.
+        //AnimatorInterface.SetBool("IsInputOpen", true);
     }
 }
