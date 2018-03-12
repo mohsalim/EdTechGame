@@ -1,8 +1,6 @@
 ﻿//using Microsoft.CSharp;
 //using System.CodeDom.Compiler;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
