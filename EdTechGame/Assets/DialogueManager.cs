@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     /// <summary>
     /// Name of flag for tracking if the dialogue box is open or closed.
     /// </summary>
-    private const string IS_OPEN_FLAG = "IsDialogueOpen";
+    private const string IS_OPEN_FLAG = "IsGameCanvasOpen";
 
     /// <summary>
     /// Text for NPC's name.
@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
     /// <param name="dialogue"></param>
     public void StartDialogue(Dialogue dialogue)
     {
-        UnityEngine.Debug.Log("Starting dialogue for NPC: " + dialogue.name);
+        Debug.Log("Starting dialogue for NPC: " + dialogue.name);
 
         // Open the the box. TODO Should we do this after we've cleared the sentences and updated the names?
         AnimatorInterface.SetBool(IS_OPEN_FLAG, true);
@@ -99,7 +99,7 @@ public class DialogueManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator TypeSentence(string sentence)
     {
-        UnityEngine.Debug.Log("Typing sentence: " + sentence);
+        Debug.Log("Typing sentence: " + sentence);
 
         DialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
@@ -114,10 +114,6 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     void EndDialogue()
     {
-        UnityEngine.Debug.Log("Ending dialogue.");
-        AnimatorInterface.SetBool(IS_OPEN_FLAG, false);
-
-        // TODO Doesn't transition input in correctly. States may need to be reorganize.
-        //AnimatorInterface.SetBool("IsInputOpen", true);
+        Debug.Log("Ending dialogue.");
     }
 }

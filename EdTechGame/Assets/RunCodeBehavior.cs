@@ -1,11 +1,12 @@
 ﻿//using Microsoft.CSharp;
-//using System.CodeDom.Compiler;
+using System.CodeDom.Compiler;
 using System;
 using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.UI;
+using Microsoft.CSharp;
 
 public class RunCodeBehavior : MonoBehaviour
 {
@@ -45,8 +46,8 @@ public class RunCodeBehavior : MonoBehaviour
         // TODO: Should I store the text component into a variable for optimization?
         Debug.Log("Input text: " + codeInputField.textComponent.text);
 
-        // TODO: Test run.
-        RunCode2(null);
+        // Build and run code.
+        BuildAndRunCode(codeInputField.textComponent.text);
     }
 
     /// <summary>
@@ -100,6 +101,80 @@ public class RunCodeBehavior : MonoBehaviour
                 Debug.Log("Result: " + result);
             }
         }
+    }
+
+    /// <summary>
+    /// Compile and run code on the fly. Delete executable after execution is complete.
+    /// Based on my code:
+    /// https://www.linkedin.com/pulse/compile-run-c-code-string-variable-runtime-ahmed-karim/
+    /// </summary>
+    /// <param name="code"></param>
+    public int BuildAndRunCode(string code)
+    {
+        string outputExe = "TestAsm.exe";
+        CompilerParameters parameters = new CompilerParameters()
+        {
+            // Generate EXE file (not DLL).
+            GenerateExecutable = true,
+            OutputAssembly = outputExe
+        };
+        CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+        CompilerResults results = codeProvider.CompileAssemblyFromSource(parameters, code);
+
+        if (results.Errors.Count > 0)
+        {
+            string errors = "";
+            foreach (CompilerError compilerError in results.Errors)
+            {
+                errors += "Line number " + compilerError.Line 
+                    + ", Error Number: " + compilerError.ErrorNumber 
+                    + ", '" + compilerError.ErrorText + ";" 
+                    + Environment.NewLine + Environment.NewLine;
+            }
+            Debug.Log("Errors: " + errors);
+            return -1;
+        }
+
+        System.Diagnostics.Process.Start(outputExe);
+
+        // Prepare the process to run.
+        System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo()
+        {
+            // Enter the executable to run including the complete path.
+            FileName = parameters.OutputAssembly,
+            WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+            CreateNoWindow = false
+        };
+
+        // Run the external process & wait for it to finish.
+        Debug.Log("About to start process...");
+        int exitCode;
+        string output;
+        using (System.Diagnostics.Process process = System.Diagnostics.Process.Start(start))
+        {
+            process.WaitForExit();
+
+            // Retrieve the app's exit code.
+            exitCode = process.ExitCode;
+            output = process.StandardOutput.ReadToEnd();
+        }
+
+        if (File.Exists(parameters.OutputAssembly))
+        {
+            Debug.Log("Deleting file: " + parameters.OutputAssembly);
+            try
+            {
+                File.Delete(parameters.OutputAssembly);
+            }
+            catch (IOException ex)
+            {
+                Debug.Log("Failed to delete file: " + parameters.OutputAssembly + ". Exception: " + ex);
+            }
+        }
+
+        Debug.Log("Process finished with exit code: " + exitCode);
+        Debug.Log("Process finished with output: " + output);
+        return exitCode;
     }
 
     /// <summary>
