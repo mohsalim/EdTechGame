@@ -10,8 +10,20 @@ using Microsoft.CSharp;
 
 public class RunCodeBehavior : MonoBehaviour
 {
+    /// <summary>
+    /// Component to grab code from.
+    /// </summary>
     public InputField codeInputField = null;
+
+    /// <summary>
+    /// Component to put output to.
+    /// </summary>
     public Text outputText = null;
+
+    /// <summary>
+    /// Prefix for output.
+    /// </summary>
+    private const string OUTPUT_PREFIX = "Output:\n";
 
     /// <summary>
     /// Attach button event during initialization.
@@ -135,7 +147,11 @@ public class RunCodeBehavior : MonoBehaviour
                     + ", '" + compilerError.ErrorText + ";" 
                     + Environment.NewLine + Environment.NewLine;
             }
+
             Debug.Log("Code compiler errors: " + errors);
+
+            // Update output text.
+            outputText.text = OUTPUT_PREFIX + errors;
             return -1;
         }
 
@@ -174,7 +190,7 @@ public class RunCodeBehavior : MonoBehaviour
         Debug.Log("Process finished with output: " + output);
 
         // Update output text.
-        outputText.text = "Output:\n" + output;
+        outputText.text = OUTPUT_PREFIX + output;
 
         // Check if file exists.
         if (File.Exists(fullFilePath))
