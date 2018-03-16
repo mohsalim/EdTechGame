@@ -11,6 +11,7 @@ using Microsoft.CSharp;
 public class RunCodeBehavior : MonoBehaviour
 {
     public InputField codeInputField = null;
+    public Text outputText = null;
 
     /// <summary>
     /// Attach button event during initialization.
@@ -111,6 +112,7 @@ public class RunCodeBehavior : MonoBehaviour
     /// <param name="code"></param>
     public int BuildAndRunCode(string code)
     {
+        // Compiler the code.
         string outputExe = "TestAsm.exe";
         CompilerParameters parameters = new CompilerParameters()
         {
@@ -121,8 +123,10 @@ public class RunCodeBehavior : MonoBehaviour
         CSharpCodeProvider codeProvider = new CSharpCodeProvider();
         CompilerResults results = codeProvider.CompileAssemblyFromSource(parameters, code);
 
+        // Check if there was any compilation errors.
         if (results.Errors.Count > 0)
         {
+            // Concat all errors.
             string errors = "";
             foreach (CompilerError compilerError in results.Errors)
             {
@@ -131,19 +135,23 @@ public class RunCodeBehavior : MonoBehaviour
                     + ", '" + compilerError.ErrorText + ";" 
                     + Environment.NewLine + Environment.NewLine;
             }
-            Debug.Log("Errors: " + errors);
+            Debug.Log("Code compiler errors: " + errors);
             return -1;
         }
 
-        System.Diagnostics.Process.Start(outputExe);
-
+        // Get absolute file path from relative file path.
+        string fullFilePath = Path.GetFullPath(results.PathToAssembly);
+        Debug.Log("Code compiled to: " + fullFilePath);
+        
         // Prepare the process to run.
         System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo()
         {
             // Enter the executable to run including the complete path.
-            FileName = parameters.OutputAssembly,
+            FileName = fullFilePath,
             WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-            CreateNoWindow = false
+            CreateNoWindow = false,
+            RedirectStandardOutput = true,
+            UseShellExecute = false
         };
 
         // Run the external process & wait for it to finish.
@@ -152,19 +160,30 @@ public class RunCodeBehavior : MonoBehaviour
         string output;
         using (System.Diagnostics.Process process = System.Diagnostics.Process.Start(start))
         {
+            // Retrieve the output from the output stream.
+            output = process.StandardOutput.ReadToEnd();
+
+            // Wait for the process to exit.
             process.WaitForExit();
 
-            // Retrieve the app's exit code.
+            // Get exit code.
             exitCode = process.ExitCode;
-            output = process.StandardOutput.ReadToEnd();
         }
 
-        if (File.Exists(parameters.OutputAssembly))
+        Debug.Log("Process finished with exit code: " + exitCode);
+        Debug.Log("Process finished with output: " + output);
+
+        // Update output text.
+        outputText.text = "Output:\n" + output;
+
+        // Check if file exists.
+        if (File.Exists(fullFilePath))
         {
-            Debug.Log("Deleting file: " + parameters.OutputAssembly);
+            Debug.Log("Deleting file: " + fullFilePath);
             try
             {
-                File.Delete(parameters.OutputAssembly);
+                // Delete the file.
+                File.Delete(fullFilePath);
             }
             catch (IOException ex)
             {
@@ -172,8 +191,7 @@ public class RunCodeBehavior : MonoBehaviour
             }
         }
 
-        Debug.Log("Process finished with exit code: " + exitCode);
-        Debug.Log("Process finished with output: " + output);
+        // Return the exit code.
         return exitCode;
     }
 
