@@ -90,7 +90,7 @@ public class RunCodeBehavior : MonoBehaviour
         // Get absolute file path from relative file path.
         string fullFilePath = Path.GetFullPath(results.PathToAssembly);
         Debug.Log("Code compiled to: " + fullFilePath);
-        
+
         // Prepare the process to run.
         System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo()
         {
@@ -99,30 +99,58 @@ public class RunCodeBehavior : MonoBehaviour
             WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
             CreateNoWindow = false,
             RedirectStandardOutput = true,
-            UseShellExecute = false
+            UseShellExecute = false,
+            RedirectStandardError = true,
+            ErrorDialog = false
         };
 
         // Run the external process & wait for it to finish.
         Debug.Log("About to start process...");
-        int exitCode;
-        string output;
-        using (System.Diagnostics.Process process = System.Diagnostics.Process.Start(start))
+        int? exitCode = null;
+        string output = null, error = null, stacktrace = null;
+
+        try
         {
-            // Retrieve the output from the output stream.
-            output = process.StandardOutput.ReadToEnd();
+            using (System.Diagnostics.Process process = System.Diagnostics.Process.Start(start))
+            {
+                // Retrieve the output from the output stream.
+                output = process.StandardOutput.ReadToEnd();
+                error = process.StandardError.ReadToEnd();
 
-            // Wait for the process to exit.
-            process.WaitForExit();
+                // Wait for the process to exit.
+                process.WaitForExit();
 
-            // Get exit code.
-            exitCode = process.ExitCode;
+                // Get exit code.
+                exitCode = process.ExitCode;
+            }
+        }
+        catch (Exception ex)
+        {
+            stacktrace = ex.StackTrace;
         }
 
-        Debug.Log("Process finished with exit code: " + exitCode);
-        Debug.Log("Process finished with output: " + output);
+        if (exitCode.HasValue)
+        {
+            Debug.Log("Process finished with exit code: " + exitCode);
+        }
+
+        if (output != null)
+        {
+            Debug.Log("Process finished with output: " + output);
+        }
+
+        if (error != null)
+        {
+            Debug.Log("Process finished with error: " + error);
+        }
+
+        if (stacktrace != null)
+        {
+            Debug.Log("Process finished with stacktrace: " + stacktrace);
+        }
 
         // Update output text.
-        outputText.text = OUTPUT_PREFIX + output;
+        outputText.text = OUTPUT_PREFIX + output + error + stacktrace;
 
         // Check if file exists.
         if (File.Exists(fullFilePath))
@@ -140,6 +168,6 @@ public class RunCodeBehavior : MonoBehaviour
         }
 
         // Return the exit code.
-        return exitCode;
+        return exitCode.Value;
     }
 }
