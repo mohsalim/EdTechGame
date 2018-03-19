@@ -57,13 +57,16 @@ public class RunCodeBehavior : MonoBehaviour
     private int BuildAndRunCode(string code)
     {
         // Compiler the code.
-        string outputExe = "TestAsm.exe";
+        string outputExe = AppDomain.CurrentDomain.BaseDirectory + "\\TestAsm.exe";
+        Debug.Log("Setting parameters in order to compile code to: " + outputExe);
         CompilerParameters parameters = new CompilerParameters()
         {
             // Generate EXE file (not DLL).
             GenerateExecutable = true,
             OutputAssembly = outputExe
         };
+
+        Debug.Log("Compiling code.");
         CSharpCodeProvider codeProvider = new CSharpCodeProvider();
         CompilerResults results = codeProvider.CompileAssemblyFromSource(parameters, code);
 
