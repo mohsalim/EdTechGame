@@ -3,11 +3,12 @@ using System.CodeDom.Compiler;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using System.Runtime.InteropServices;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 
 public class RunCodeBehavior : MonoBehaviour
 {
@@ -53,10 +54,101 @@ public class RunCodeBehavior : MonoBehaviour
 
         // Debugging to figure out Mono.exe path that the code expects during runtime.
         // This is useful to know during Editor runtime and Build runtime.
-        MonoToolsLocator();
+        //MonoToolsLocator();
 
         // Build and run code.
-        BuildAndRunCode(inputText.text);
+        //BuildAndRunCode(inputText.text);
+        //BuildAndRunCode2(inputText.text);
+        RunPythonCode(inputText.text);
+    }
+
+    /// <summary>
+    /// Run python code using IronPython.
+    /// TODO: try/catch ??
+    /// </summary>
+    /// <param name="code"></param>
+    private void RunPythonCode(string code)
+    {
+        // Create engine and scope.
+        ScriptEngine engine = Python.CreateEngine();
+        ScriptScope scope = engine.CreateScope();
+
+        // Add source code to engine.
+        ScriptSource sourceCode = engine.CreateScriptSourceFromString(code);
+
+        // Create streams for output and errors.
+        MemoryStream streamOutput = new MemoryStream();
+        MemoryStream streamError = new MemoryStream();
+
+        // Set default encoding to both streams.
+        engine.Runtime.IO.SetOutput(streamOutput, Encoding.Default);
+        engine.Runtime.IO.SetErrorOutput(streamError, Encoding.Default);
+
+        // Execute code within scope.
+        string executionResult = sourceCode.Execute<string>(scope);
+
+        // Get output and errors from stream.
+        string output = Encoding.Default.GetString(streamOutput.ToArray());
+        Debug.Log("Captured output: " + output);
+        string errors = Encoding.Default.GetString(streamError.ToArray());
+        Debug.Log("Captured error: " + errors);
+
+        // Show player the results.
+        outputText.text = OUTPUT_PREFIX + output + errors;
+    }
+
+    /// <summary>
+    /// http://www.tugberkugurlu.com/archive/compiling-c-sharp-code-into-memory-and-executing-it-with-roslyn
+    /// </summary>
+    /// <param name="code"></param>
+    private void BuildAndRunCode2(string code)
+    {
+        /*
+        SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code);
+
+        string assemblyName = Path.GetRandomFileName();
+        MetadataReference[] references = new MetadataReference[]
+        {
+            MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location)
+        };
+
+        CSharpCompilation compilation = CSharpCompilation.Create(
+            assemblyName,
+            syntaxTrees: new[] { syntaxTree },
+            references: references,
+            options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+        using (var ms = new MemoryStream())
+        {
+            EmitResult result = compilation.Emit(ms);
+
+            if (!result.Success)
+            {
+                IEnumerable<Diagnostic> failures = result.Diagnostics.Where(diagnostic =>
+                    diagnostic.IsWarningAsError ||
+                    diagnostic.Severity == DiagnosticSeverity.Error);
+
+                foreach (Diagnostic diagnostic in failures)
+                {
+                    Debug.Log(diagnostic.Id +": " + diagnostic.GetMessage());
+                }
+            }
+            else
+            {
+                ms.Seek(0, SeekOrigin.Begin);
+                Assembly assembly = Assembly.Load(ms.ToArray());
+
+                Type type = assembly.GetType("NsHello.Hello");
+                object obj = Activator.CreateInstance(type);
+                object invokeResult = type.InvokeMember("Main",
+                    BindingFlags.Static | BindingFlags.InvokeMethod | BindingFlags.Public,
+                    null,
+                    obj,
+                    new object[] { });
+            }
+        }
+        */
     }
 
     /// <summary>
