@@ -84,8 +84,19 @@ public class RunCodeBehavior : MonoBehaviour
         engine.Runtime.IO.SetOutput(streamOutput, Encoding.Default);
         engine.Runtime.IO.SetErrorOutput(streamError, Encoding.Default);
 
-        // Execute code within scope.
-        string executionResult = sourceCode.Execute<string>(scope);
+        // Handle any exception when executing code.
+        string exception = "";
+        try
+        {
+            // Execute code within scope.
+            string executionResult = sourceCode.Execute<string>(scope);
+        }
+        catch (Exception ex)
+        {
+            // Most errors will come out as exception instead of through error stream.
+            exception = ex.Message;
+            Debug.Log("Exception:  " + exception);
+        }
 
         // Get output and errors from stream.
         string output = Encoding.Default.GetString(streamOutput.ToArray());
@@ -94,7 +105,7 @@ public class RunCodeBehavior : MonoBehaviour
         Debug.Log("Captured error: " + errors);
 
         // Show player the results.
-        outputText.text = OUTPUT_PREFIX + output + errors;
+        outputText.text = OUTPUT_PREFIX + output + errors + exception;
     }
 
     /// <summary>
