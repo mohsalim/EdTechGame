@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.SceneSystem;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class StartGameTrigger : MonoBehaviour
@@ -79,8 +80,9 @@ public class StartGameTrigger : MonoBehaviour
                 Destroy(button);
                 Destroy(buttonText);
 
-                // Start first dialogue.
-                FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+                // Start first scene.
+                //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+                FindObjectOfType<SceneManager>().StartNextScene();
             }
         }
     }

@@ -6,7 +6,7 @@ namespace Assets.SceneSystem
 {
     [Serializable]
     public class Scene
-    {
+    { 
         /// <summary>
         /// Queue of dialogue sets.
         /// </summary>
