@@ -40,17 +40,18 @@ namespace Assets.SceneSystem
                                         "Come on bro! I'll pay you back big time time.",
                                         "Brooooooooooooooooooooooooooooooooooooooooooooo, please?!",
                                         "I think we have to get 'hello word' followed by 'goodbye world', but I'm not sure how to do that!"
-                                    }
+                                    },
+                                    successMessage =  "Nice bro! I think that was right!",
                                 },
                                 new Dialogue
                                 {
                                     name = NpcNames.BROSEPH,
                                     sentences = new string[]
                                     {
-                                        "Nice bro! I think that was right!",
                                         "The assignment says that we to change the variable 'number' to 8.",
                                         "But bro, it also says we got to do it befre printing the variable."
-                                    }
+                                    },
+                                    successMessage = "That seems right. You're so smart bro!"
                                 }
                             }
                         ),

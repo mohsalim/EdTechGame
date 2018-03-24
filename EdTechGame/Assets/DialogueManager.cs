@@ -24,6 +24,11 @@ public class DialogueManager : MonoBehaviour
     public Text DialogueText;
 
     /// <summary>
+    /// Button for contining to next sentence.
+    /// </summary>
+    public Button ContinueButton;
+
+    /// <summary>
     /// Animator for opening/closing dialogue box.
     /// </summary>
     public Animator AnimatorInterface;
@@ -94,6 +99,10 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     private void StartSentenceAnimation()
     {
+        // Show continue button.
+        Debug.Log("Showing continue button");
+        ContinueButton.gameObject.SetActive(true);
+
         // Open the the box. TODO Should we do this after we've cleared the sentences and updated the names?
         AnimatorInterface.SetBool(IS_OPEN_FLAG, true);
 
@@ -123,14 +132,6 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void DisplayNextSentence()
     {
-        // If there are no more sentences.
-        if (Sentences.Count == 0)
-        {
-            // Then end the dialogue and return.
-            EndDialogue();
-            return;
-        }
-
         // Get the next sentence in the queue.
         string sentence = Sentences.Dequeue();
 
@@ -139,6 +140,14 @@ public class DialogueManager : MonoBehaviour
 
         // Start a new coroutine to type out the sentence.
         StartCoroutine(TypeSentence(sentence));
+
+        // If there are no more sentences.
+        if (Sentences.Count == 0)
+        {
+            // Hide continue button.
+            Debug.Log("Hiding continue button");
+            ContinueButton.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -157,13 +166,5 @@ public class DialogueManager : MonoBehaviour
             DialogueText.text += letter;
             yield return null;
         }
-    }
-
-    /// <summary>
-    /// End dialogue by closing the the box.
-    /// </summary>
-    void EndDialogue()
-    {
-        Debug.Log("Ending dialogue.");
     }
 }
