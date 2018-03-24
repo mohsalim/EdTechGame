@@ -102,8 +102,6 @@ public class RunCodeBehavior : MonoBehaviour
             if (sceneManager.currentProblem.ValidateAnswer(totalOutput, out hint))
             {
                 dialogueManager.StartSuccessMessage(sceneManager.currentDialogue);
-                // TODO Start next problem? Here or in success message method? We need a delay.
-                // TODO Show/hide Continue... button.
             }
             else
             {

@@ -17,7 +17,9 @@ namespace Assets.SceneSystem
 
         private int sceneCounter = 0;
 
-
+        /// <summary>
+        /// Array of scenes for the entire game.
+        /// </summary>
         private Scene[] Scenes
         {
             get
@@ -68,16 +70,15 @@ namespace Assets.SceneSystem
             }
         }
 
+        /// <summary>
+        /// Start next dialogue and prblem.
+        /// </summary>
         public void StartNextScene()
         {
             Scenes[sceneCounter].Dequeue(out currentDialogue, out currentProblem);
             FindObjectOfType<DialogueManager>().StartDialogue(currentDialogue);
             CodeInputField.text = currentProblem.StartCode;
             sceneCounter++;
-
-            // TODO set up problem!
-            // TODO Add onclick event/trigger.
-            // TODO Add first sccene trigger.
         }
     }
 }
