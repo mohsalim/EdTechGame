@@ -49,14 +49,8 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Starting dialogue for NPC: " + dialogue.name);
 
-        // Open the the box. TODO Should we do this after we've cleared the sentences and updated the names?
-        AnimatorInterface.SetBool(IS_OPEN_FLAG, true);
-
         // Clear out the current queue.
         Sentences.Clear();
-
-        // Update the NPC's name.
-        NameText.text = dialogue.name;
 
         // Enqueue the sentences from the given dialogue.
         foreach (string sentence in dialogue.sentences)
@@ -64,8 +58,64 @@ public class DialogueManager : MonoBehaviour
             Sentences.Enqueue(sentence);
         }
 
+        StartSentenceHelper(dialogue);
+    }
+
+    /// <summary>
+    /// Clear dialogue and display success message.
+    /// </summary>
+    /// <param name="dialogue"></param>
+    public void StartSuccessMessage(Dialogue dialogue)
+    {
+        Debug.Log("Starting success message for NPC: " + dialogue.name);
+
+        // Clear out the current queue.
+        Sentences.Clear();
+
+        // Enqueue the sentences from the given dialogue.
+        Sentences.Enqueue(dialogue.successMessage);
+
+        StartSentenceHelper(dialogue);
+    }
+
+    /// <summary>
+    /// Mutual logic for displaying dialogue or success message (which both set the name).
+    /// </summary>
+    /// <param name="dialogue"></param>
+    private void StartSentenceHelper(Dialogue dialogue)
+    {
+        // Update the NPC's name.
+        NameText.text = dialogue.name;
+        StartSentenceAnimation();
+    }
+
+    /// <summary>
+    /// Mutual logic for displaying animating.
+    /// </summary>
+    private void StartSentenceAnimation()
+    {
+        // Open the the box. TODO Should we do this after we've cleared the sentences and updated the names?
+        AnimatorInterface.SetBool(IS_OPEN_FLAG, true);
+
         // Start displaying the new sentences.
         DisplayNextSentence();
+    }
+
+    /// <summary>
+    /// Start hint. Does not change NPC name.
+    /// </summary>
+    /// <param name="hint"></param>
+    public void StartHint(string hint)
+    {
+        Debug.Log("Displaying hint for current NPC: " + NameText.text);
+
+        // Clear out the current queue.
+        Sentences.Clear();
+
+        // Enqueue the hint.
+        Sentences.Enqueue(hint);
+
+        StartSentenceAnimation();
     }
 
     /// <summary>

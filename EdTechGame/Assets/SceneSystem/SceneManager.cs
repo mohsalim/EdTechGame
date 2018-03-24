@@ -11,9 +11,9 @@ namespace Assets.SceneSystem
 
         public Text DialogueText;
 
-        private Dialogue currentDialogue = null;
+        public Dialogue currentDialogue = null;
 
-        private Problem currentProblem = null;
+        public Problem currentProblem = null;
 
         private int sceneCounter = 0;
 

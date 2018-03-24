@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Text;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
+using Assets.SceneSystem;
 
 public class RunCodeBehavior : MonoBehaviour
 {
@@ -89,6 +90,25 @@ public class RunCodeBehavior : MonoBehaviour
         Debug.Log("Captured error: " + errors);
 
         // Show player the results.
-        outputText.text = OUTPUT_PREFIX + output + errors + exception;
+        string totalOutput = output + errors + exception;
+        outputText.text = OUTPUT_PREFIX + totalOutput;
+
+        // TODO cache in variable as optimization?
+        SceneManager sceneManager = FindObjectOfType<SceneManager>();
+        DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
+        if (sceneManager.currentProblem != null)
+        {
+            string hint;
+            if (sceneManager.currentProblem.ValidateAnswer(totalOutput, out hint))
+            {
+                dialogueManager.StartSuccessMessage(sceneManager.currentDialogue);
+                // TODO Start next problem? Here or in success message method? We need a delay.
+                // TODO Show/hide Continue... button.
+            }
+            else
+            {
+                dialogueManager.StartHint(hint);
+            }
+        }
     }
 }

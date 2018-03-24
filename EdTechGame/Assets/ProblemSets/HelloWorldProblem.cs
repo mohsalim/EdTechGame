@@ -16,7 +16,7 @@ namespace Assets.ProblemSets
         {
             get
             {
-                return $"hello wolrd{Environment.NewLine}goodbye world";
+                return $"hello world{Environment.NewLine}goodbye world";
             }
         }
 
