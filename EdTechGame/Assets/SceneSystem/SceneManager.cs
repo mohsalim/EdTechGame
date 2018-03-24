@@ -7,7 +7,7 @@ namespace Assets.SceneSystem
 {
     public class SceneManager : MonoBehaviour
     {
-        public Text InputText;
+        public InputField CodeInputField;
 
         public Text DialogueText;
 
@@ -71,7 +71,7 @@ namespace Assets.SceneSystem
         {
             Scenes[sceneCounter].Dequeue(out currentDialogue, out currentProblem);
             FindObjectOfType<DialogueManager>().StartDialogue(currentDialogue);
-            InputText.text = currentProblem.StartCode;
+            CodeInputField.text = currentProblem.StartCode;
             sceneCounter++;
 
             // TODO set up problem!
