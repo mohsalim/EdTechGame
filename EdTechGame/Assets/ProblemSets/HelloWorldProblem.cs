@@ -86,7 +86,7 @@ namespace Assets.ProblemSets
                 }
             }
 
-            hint = $"Your output should say ${this.Answer}";
+            hint = $"Your output should say:\n{this.Answer}";
             return false;
         }
 
