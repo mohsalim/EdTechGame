@@ -43,7 +43,7 @@ namespace Assets.SceneSystem
                                         "I can't figure it out! Can you please help me solve it?",
                                         "Come on bro! I'll pay you back big time time.",
                                         "Brooooooooooooooooooooooooooooooooooooooooooooo, please?!",
-                                        "I think we have to get 'hello word' followed by 'goodbye world', but I'm not sure how to do that!"
+                                        "I think we have to print 'hello word' followed by 'goodbye world', but I'm not sure how to do that!"
                                     },
                                     successMessage =  "Nice bro! I think that was right!",
                                 },
