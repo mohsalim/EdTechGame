@@ -24,7 +24,7 @@ namespace Assets.ProblemSets
         {
             get
             {
-                return "<h>Hello, World!</h>\n\n" +
+                return string.Format(TITLE_FORMAT, "Hello, World!") +
                     "Python is a very simple language, and has a very straightforward syntax. " +
                     "It encourages programmers to program without boilerplate (prepared) code. " +
                     "The simplest function in Python is the \"print\" function. " +

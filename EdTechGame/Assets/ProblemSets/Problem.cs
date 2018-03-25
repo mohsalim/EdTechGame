@@ -14,6 +14,11 @@ namespace Assets.ProblemSets
         protected const string NOTHING_PRINTED_HINT = "Your code isn't printing anything.";
 
         /// <summary>
+        /// Title format for instructions.
+        /// </summary>
+        protected const string TITLE_FORMAT = "<size=32><b>{0}</b></size>\n\n";
+
+        /// <summary>
         /// Starting code.
         /// </summary>
         public abstract string StartCode { get; }

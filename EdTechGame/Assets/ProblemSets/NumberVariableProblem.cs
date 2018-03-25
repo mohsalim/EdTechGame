@@ -24,7 +24,7 @@ namespace Assets.ProblemSets
         {
             get
             {
-                return "<h>Variables and Types</h>\n\n" +
+                return string.Format(TITLE_FORMAT, "Variables and Types") +
                     "Python is completely object oriented. Think of this as \"objects\" are nouns and \"methods\" are verbs.\n\n" +
                     "You do not need to declare variables before using them or declare their type. " +
                     "For example, is the variable a number or a word? It will never have a fixed type. " +
