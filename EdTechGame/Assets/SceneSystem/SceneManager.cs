@@ -11,6 +11,8 @@ namespace Assets.SceneSystem
 
         public Text DialogueText;
 
+        public Text InstructionText;
+
         public Dialogue currentDialogue = null;
 
         public Problem currentProblem = null;
@@ -78,6 +80,7 @@ namespace Assets.SceneSystem
             Scenes[sceneCounter].Dequeue(out currentDialogue, out currentProblem);
             FindObjectOfType<DialogueManager>().StartDialogue(currentDialogue);
             CodeInputField.text = currentProblem.StartCode;
+            InstructionText.text = currentProblem.Instructions;
             sceneCounter++;
         }
     }
