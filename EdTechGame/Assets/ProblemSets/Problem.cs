@@ -8,6 +8,9 @@ namespace Assets.ProblemSets
     [Serializable]
     public abstract class Problem
     {
+        /// <summary>
+        /// Default nothing is printing text.
+        /// </summary>
         protected const string NOTHING_PRINTED_HINT = "Your code isn't printing anything.";
 
         /// <summary>
@@ -19,6 +22,8 @@ namespace Assets.ProblemSets
         /// Correct answer.
         /// </summary>
         public abstract string Answer { get; }
+
+        public abstract string Instructions { get; }
 
         /// <summary>
         /// Returns true if answer is correct.

@@ -20,6 +20,23 @@ namespace Assets.ProblemSets
             }
         }
 
+        public override string Instructions
+        {
+            get
+            {
+                return "<h>Hello, World!</h>\n\n" +
+                    "Python is a very simple language, and has a very straightforward syntax. " +
+                    "It encourages programmers to program without boilerplate (prepared) code. " +
+                    "The simplest function in Python is the \"print\" function. " +
+                    "It simply prints out a line followed up a line break (referred to as a newline). " +
+                    "The words surrounded by the double quotes are refferred to \"strings\". " +
+                    "Think of strings as a sequence of characters (letters, numerals, symbols and punctuation marks). " +
+                    "This is typically the text you find in a book or article.\n\n" +
+                    "There are two major Python versions, Python 2 and Python 3. Python 2 and 3 are quite different. This tutorial uses Python 2.\n\n" +
+                    "Use the \"print\" command to print the line \"Hello World!\" followed by \"Goodbye world\" on the next line.";
+            }
+        }
+
         private string[] SplitByLines(string s)
         {
             return s.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
