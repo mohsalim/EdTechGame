@@ -19,6 +19,11 @@ public class DialogueManager : MonoBehaviour
     public Text NameText;
 
     /// <summary>
+    /// Image for holding NPC's sprite.
+    /// </summary>
+    public Image NpcImage;
+
+    /// <summary>
     /// Text for current sentence.
     /// </summary>
     public Text DialogueText;
@@ -53,6 +58,10 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Starting dialogue for NPC: " + dialogue.name);
+
+        // Update sprite.
+        Debug.Log("Loading sprite: " + dialogue.sprite);
+        NpcImage.sprite = Resources.Load<Sprite>(dialogue.sprite) as Sprite;
 
         // Clear out the current queue.
         Sentences.Clear();

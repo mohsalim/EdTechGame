@@ -25,9 +25,7 @@ public class Dialogue
     public string successMessage;
 
     /// <summary>
-    /// NPC graphic.
-    /// TODO Should this be another type?
-    /// TODO Not used yet. Implement later.
+    /// NPC sprite resource name.
     /// </summary>
-    public string graphic;
+    public string sprite;
 }

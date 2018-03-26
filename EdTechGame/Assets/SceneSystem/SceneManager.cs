@@ -7,16 +7,34 @@ namespace Assets.SceneSystem
 {
     public class SceneManager : MonoBehaviour
     {
+        /// <summary>
+        /// Input field for code.
+        /// </summary>
         public InputField CodeInputField;
 
+        /// <summary>
+        /// Output field for NPC dialogue and hints.
+        /// </summary>
         public Text DialogueText;
 
+        /// <summary>
+        /// Text for additional instruction.
+        /// </summary>
         public Text InstructionText;
 
+        /// <summary>
+        /// Current dialogue set.
+        /// </summary>
         public Dialogue currentDialogue = null;
 
+        /// <summary>
+        /// Current problem player needs to complete.
+        /// </summary>
         public Problem currentProblem = null;
 
+        /// <summary>
+        /// Scene counter to keep track of player progress.
+        /// </summary>
         private int sceneCounter = 0;
 
         /// <summary>
@@ -46,6 +64,7 @@ namespace Assets.SceneSystem
                                         "I think we have to print 'hello word' followed by 'goodbye world', but I'm not sure how to do that!"
                                     },
                                     successMessage =  "Nice bro! I think that was right!",
+                                    sprite = NpcNames.BROSEPH_SPRITE_HAPPY
                                 },
                                 new Dialogue
                                 {
@@ -55,7 +74,8 @@ namespace Assets.SceneSystem
                                         "The assignment says that we to change the variable 'number' to 8.",
                                         "But bro, it also says we got to do it befre printing the variable."
                                     },
-                                    successMessage = "That seems right. You're so smart bro!"
+                                    successMessage = "That seems right. You're so smart bro!",
+                                    sprite = NpcNames.BROSEPH_SPRITE_HAPPY
                                 }
                             }
                         ),
