@@ -1,3 +1,4 @@
+using Assets.Sprites;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,8 +61,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Starting dialogue for NPC: " + dialogue.name);
 
         // Update sprite.
-        Debug.Log("Loading sprite: " + dialogue.sprite);
-        NpcImage.sprite = Resources.Load<Sprite>(dialogue.sprite) as Sprite;
+        NpcImage.sprite = SpriteCache.GetSprite(dialogue.sprite);
 
         // Clear out the current queue.
         Sentences.Clear();
