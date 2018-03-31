@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.SceneSystem
+namespace Assets.Tutorials
 {
     public class TutorialManager : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Assets.ProblemSets;
 
-namespace Assets.SceneSystem
+namespace Assets.Tutorials
 {
     [Serializable]
     public class Scene

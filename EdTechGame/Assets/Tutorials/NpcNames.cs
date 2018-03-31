@@ -1,4 +1,4 @@
-﻿namespace Assets.SceneSystem
+﻿namespace Assets.Tutorials
 {
     public class NpcNames
     {
