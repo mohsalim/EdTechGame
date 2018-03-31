@@ -5,7 +5,7 @@ using Assets.ProblemSets;
 namespace Assets.Tutorials
 {
     [Serializable]
-    public class Scene
+    public class Tutorial
     { 
         /// <summary>
         /// Queue of dialogue sets.

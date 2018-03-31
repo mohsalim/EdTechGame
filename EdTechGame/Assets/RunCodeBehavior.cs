@@ -94,14 +94,14 @@ public class RunCodeBehavior : MonoBehaviour
         outputText.text = OUTPUT_PREFIX + totalOutput;
 
         // TODO cache in variable as optimization?
-        TutorialManager sceneManager = FindObjectOfType<TutorialManager>();
+        TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
         DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
-        if (sceneManager.currentProblem != null)
+        if (tutorialManager.currentProblem != null)
         {
             string hint;
-            if (sceneManager.currentProblem.ValidateAnswer(totalOutput, out hint))
+            if (tutorialManager.currentProblem.ValidateAnswer(totalOutput, out hint))
             {
-                dialogueManager.StartSuccessMessage(sceneManager.currentDialogue);
+                dialogueManager.StartSuccessMessage(tutorialManager.currentDialogue);
             }
             else
             {

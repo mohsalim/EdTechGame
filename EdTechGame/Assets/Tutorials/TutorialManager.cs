@@ -23,6 +23,11 @@ namespace Assets.Tutorials
         public Text InstructionText;
 
         /// <summary>
+        /// Button for starting next problem.
+        /// </summary>
+        public Button NextProblemButton;
+
+        /// <summary>
         /// Current dialogue set.
         /// </summary>
         public Dialogue currentDialogue = null;
@@ -33,20 +38,20 @@ namespace Assets.Tutorials
         public Problem currentProblem = null;
 
         /// <summary>
-        /// Scene counter to keep track of player progress.
+        /// Tutorial counter to keep track of player progress.
         /// </summary>
-        private int sceneCounter = 0;
+        private int tutorialCounter = 0;
 
         /// <summary>
-        /// Array of scenes for the entire game.
+        /// Array of tutorials for the entire game.
         /// </summary>
-        private Scene[] Scenes
+        private Tutorial[] Tutorials
         {
             get
             {
-                return new Scene[]
+                return new Tutorial[]
                 {
-                    new Scene()
+                    new Tutorial()
                     {
                         Dialogues = new Queue<Dialogue>
                         (
@@ -93,15 +98,33 @@ namespace Assets.Tutorials
         }
 
         /// <summary>
-        /// Start next dialogue and prblem.
+        /// Start next dialogue and problem.
         /// </summary>
         public void StartNextProblem()
         {
-            Scenes[sceneCounter].Dequeue(out currentDialogue, out currentProblem);
+            Debug.Log("Starting next problem. tutorialCounter = " + tutorialCounter);
+
+            // Hide the next problem button.
+            NextProblemButton.gameObject.SetActive(false);
+
+            // Get the next dialogue/problem set from the current tutorial.
+            Tutorials[tutorialCounter].Dequeue(out currentDialogue, out currentProblem);
+
+            // Start the dialogue.
             FindObjectOfType<DialogueManager>().StartDialogue(currentDialogue);
+
+            // Display starting code.
             CodeInputField.text = currentProblem.StartCode;
+
+            // Update instructions.
             InstructionText.text = currentProblem.Instructions;
-            sceneCounter++;
+
+            // If there are no more problems in the current tutorial, then increment the tutorial counter.
+            if (Tutorials[tutorialCounter].IsComplete())
+            {
+                Debug.Log("Tutorial " + tutorialCounter + " now complete.");
+                tutorialCounter++;
+            }
         }
     }
 }

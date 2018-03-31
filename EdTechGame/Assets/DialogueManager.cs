@@ -35,6 +35,11 @@ public class DialogueManager : MonoBehaviour
     public Button ContinueButton;
 
     /// <summary>
+    /// Button for starting next problem.
+    /// </summary>
+    public Button NextProblemButton;
+
+    /// <summary>
     /// Animator for opening/closing dialogue box.
     /// </summary>
     public Animator AnimatorInterface;
@@ -90,6 +95,9 @@ public class DialogueManager : MonoBehaviour
         Sentences.Enqueue(dialogue.successMessage);
 
         StartSentenceHelper(dialogue);
+
+        // Show the next problem button.
+        NextProblemButton.gameObject.SetActive(true);
     }
 
     /// <summary>
