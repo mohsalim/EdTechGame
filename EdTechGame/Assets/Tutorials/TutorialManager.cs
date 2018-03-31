@@ -95,7 +95,7 @@ namespace Assets.Tutorials
         /// <summary>
         /// Start next dialogue and prblem.
         /// </summary>
-        public void StartNextScene()
+        public void StartNextProblem()
         {
             Scenes[sceneCounter].Dequeue(out currentDialogue, out currentProblem);
             FindObjectOfType<DialogueManager>().StartDialogue(currentDialogue);
