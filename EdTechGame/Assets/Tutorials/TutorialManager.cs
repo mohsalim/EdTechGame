@@ -45,57 +45,22 @@ namespace Assets.Tutorials
         /// <summary>
         /// Array of tutorials for the entire game.
         /// </summary>
-        private Tutorial[] Tutorials
+        private static Tutorial[] Tutorials = new Tutorial[]
         {
-            get
+            new Tutorial()
             {
-                return new Tutorial[]
+                Dialogues = new Queue<Dialogue>(new Dialogue[]
                 {
-                    new Tutorial()
-                    {
-                        Dialogues = new Queue<Dialogue>
-                        (
-                            new Dialogue[]
-                            {
-                                new Dialogue
-                                {
-                                    name = NpcNames.BROSEPH,
-                                    sentences = new string[]
-                                    {
-                                        "Bro, did you finish the programming homework?",
-                                        "I can't figure it out! Can you please help me solve it?",
-                                        "Come on bro! I'll pay you back big time time.",
-                                        "Brooooooooooooooooooooooooooooooooooooooooooooo, please?!",
-                                        "I think we have to print 'hello word' followed by 'goodbye world', but I'm not sure how to do that!"
-                                    },
-                                    successMessage =  "Nice bro! I think that was right!",
-                                    sprite = NpcNames.BROSEPH_SPRITE_HAPPY
-                                },
-                                new Dialogue
-                                {
-                                    name = NpcNames.BROSEPH,
-                                    sentences = new string[]
-                                    {
-                                        "The assignment says that we to change the variable 'number' to 8.",
-                                        "But bro, it also says we got to do it befre printing the variable."
-                                    },
-                                    successMessage = "That seems right. You're so smart bro!",
-                                    sprite = NpcNames.BROSEPH_SPRITE_HAPPY
-                                }
-                            }
-                        ),
-                        Problems = new Queue<Problem>
-                        (
-                            new Problem[]
-                            {
-                                new HelloWorldProblem(),
-                                new NumberVariableProblem()
-                            }
-                        )
-                    }
-                };
+                    DialogueSet.HelloWorldDialgoue(),
+                    DialogueSet.NumberVariableDialogue()
+                }),
+                Problems = new Queue<Problem>(new Problem[]
+                {
+                    new HelloWorldProblem(),
+                    new NumberVariableProblem()
+                })
             }
-        }
+        };
 
         /// <summary>
         /// Start next dialogue and problem.
