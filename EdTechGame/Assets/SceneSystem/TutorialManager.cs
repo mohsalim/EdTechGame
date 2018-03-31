@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Assets.SceneSystem
 {
-    public class SceneManager : MonoBehaviour
+    public class TutorialManager : MonoBehaviour
     {
         /// <summary>
         /// Input field for code.

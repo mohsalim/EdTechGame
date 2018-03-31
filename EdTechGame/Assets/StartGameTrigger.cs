@@ -81,7 +81,7 @@ public class StartGameTrigger : MonoBehaviour
                 Destroy(buttonText);
 
                 // Start first scene.
-                FindObjectOfType<SceneManager>().StartNextScene();
+                FindObjectOfType<TutorialManager>().StartNextScene();
             }
         }
     }

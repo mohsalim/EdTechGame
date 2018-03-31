@@ -94,7 +94,7 @@ public class RunCodeBehavior : MonoBehaviour
         outputText.text = OUTPUT_PREFIX + totalOutput;
 
         // TODO cache in variable as optimization?
-        SceneManager sceneManager = FindObjectOfType<SceneManager>();
+        TutorialManager sceneManager = FindObjectOfType<TutorialManager>();
         DialogueManager dialogueManager = FindObjectOfType<DialogueManager>();
         if (sceneManager.currentProblem != null)
         {
