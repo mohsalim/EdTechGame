@@ -40,6 +40,11 @@ public class DialogueManager : MonoBehaviour
     public Button NextProblemButton;
 
     /// <summary>
+    /// Button for running code.
+    /// </summary>
+    public Button RunCodeButton;
+
+    /// <summary>
     /// Animator for opening/closing dialogue box.
     /// </summary>
     public Animator AnimatorInterface;
@@ -87,6 +92,10 @@ public class DialogueManager : MonoBehaviour
     public void StartSuccessMessage(Dialogue dialogue)
     {
         Debug.Log("Starting success message for NPC: " + dialogue.name);
+
+        // Hide run code button. It should only be displayed after next problem is started.
+        // This is done in the TutorialManager.cs.
+        RunCodeButton.gameObject.SetActive(false);
 
         // Clear out the current queue.
         Sentences.Clear();

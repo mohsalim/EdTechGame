@@ -28,6 +28,11 @@ namespace Assets.Tutorials
         public Button NextProblemButton;
 
         /// <summary>
+        /// Button for running code.
+        /// </summary>
+        public Button RunCodeButton;
+
+        /// <summary>
         /// Current dialogue set.
         /// </summary>
         public Dialogue currentDialogue = null;
@@ -71,6 +76,9 @@ namespace Assets.Tutorials
 
             // Hide the next problem button.
             NextProblemButton.gameObject.SetActive(false);
+
+            // Display run code button.
+            RunCodeButton.gameObject.SetActive(true);
 
             // Get the next dialogue/problem set from the current tutorial.
             Tutorials[tutorialCounter].Dequeue(out currentDialogue, out currentProblem);
