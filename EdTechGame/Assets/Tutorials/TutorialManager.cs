@@ -73,6 +73,8 @@ namespace Assets.Tutorials
         public void StartNextProblem()
         {
             Debug.Log("Starting next problem. tutorialCounter = " + tutorialCounter);
+            
+            // TODO End game screen? If the counter exceeds tutorials, then we need to end the game properly instead of letting it crash.
 
             // Hide the next problem button.
             NextProblemButton.gameObject.SetActive(false);
