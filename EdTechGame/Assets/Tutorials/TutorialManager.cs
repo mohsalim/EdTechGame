@@ -57,12 +57,14 @@ namespace Assets.Tutorials
                 Dialogues = new Queue<Dialogue>(new Dialogue[]
                 {
                     DialogueSet.HelloWorldDialgoue(),
-                    DialogueSet.NumberVariableDialogue()
+                    DialogueSet.IntegerDialogue(),
+                    DialogueSet.FloatingPointDialogue()
                 }),
                 Problems = new Queue<Problem>(new Problem[]
                 {
                     new HelloWorldProblem(),
-                    new NumberVariableProblem()
+                    new IntegerProblem(),
+                    new FloatingPointProblem()
                 })
             }
         };
