@@ -58,13 +58,15 @@ namespace Assets.Tutorials
                 {
                     DialogueSet.HelloWorldDialgoue(),
                     DialogueSet.IntegerDialogue(),
-                    DialogueSet.FloatingPointDialogue()
+                    DialogueSet.FloatingPointDialogue(),
+                    DialogueSet.BooleanProblem()
                 }),
                 Problems = new Queue<Problem>(new Problem[]
                 {
                     new HelloWorldProblem(),
                     new IntegerProblem(),
-                    new FloatingPointProblem()
+                    new FloatingPointProblem(),
+                    new BooleanProblem()
                 })
             }
         };

@@ -24,7 +24,9 @@ namespace Assets.ProblemSets
         {
             get
             {
-                return $"The variable \"myFloat\" has a value of 7.0. The variable \"myOtherFloat\" has the value 8.0 by taking the integer 8 and converting it to 8.0 with the \"float()\" method. Print just a variable with the value ${this.Answer}. Nothing else should be printed.";
+                return $"The variable \"myFloat\" has a value of 7.0. " +
+                    $"The variable \"myOtherFloat\" has the value 8.0 by taking the integer 8 and converting it to 8.0 with the \"float()\" method. " +
+                    $"Print just a variable with the value {this.Answer}. Nothing else should be printed.";
             }
         }
 

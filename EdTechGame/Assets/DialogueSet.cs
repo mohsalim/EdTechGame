@@ -67,5 +67,28 @@ namespace Assets
                 sprite = NpcNames.BROSEPH_SPRITE_HAPPY
             };
         }
+
+        /// <summary>
+        /// Dialogue for BooleanProblem.cs
+        /// </summary>
+        /// <returns></returns>
+        public static Dialogue BooleanProblem()
+        {
+            return new Dialogue
+            {
+                name = NpcNames.BROSEPH,
+                sentences = new string[]
+                {
+                    "Time to look at boolean variables.",
+                    "Booleans is just a fancy word for something bring true or false.",
+                    "Like if I say \"I'm a genius\", then the boolean value is True.",
+                    "And if I say \"pigs can fly\", then the boolean value is False....I think...",
+                    "Notice how the first letter is capital for booleans bro! This matters!",
+                    "I think we need to change it to print False instead of True this time."
+                },
+                successMessage = "If the fact is \"you're a real bro\", then the boolean would be True! Nice work!",
+                sprite = NpcNames.BROSEPH_SPRITE_HAPPY
+            };
+        }
     }
 }
