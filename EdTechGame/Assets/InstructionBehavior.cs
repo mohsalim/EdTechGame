@@ -15,12 +15,26 @@ namespace Assets
         public Animator AnimatorInterface;
 
         /// <summary>
+        /// Primary audio source object.
+        /// </summary>
+        public AudioSource AudioSource;
+
+        /// <summary>
+        /// Sliding audio sound when opening and closing instruction box.
+        /// </summary>
+        private AudioClip OpenCloseBoxSound;
+
+        void Start()
+        {
+            OpenCloseBoxSound = Resources.Load("UI Sfx/Wav/Slide_Sharp_02") as AudioClip;
+        }
+
+        /// <summary>
         /// Open instruction box.
         /// </summary>
         public void OpenInstructions()
         {
-            Debug.Log("Opening instructions box.");
-            AnimatorInterface.SetBool(INSTRUCTION_BOX_FLAG, true);
+            OpenCloseInstructions(true);
         }
 
         /// <summary>
@@ -28,8 +42,24 @@ namespace Assets
         /// </summary>
         public void CloseInstructions()
         {
-            Debug.Log("Closing instructions box.");
-            AnimatorInterface.SetBool(INSTRUCTION_BOX_FLAG, false);
+            OpenCloseInstructions(false);
+        }
+
+        /// <summary>
+        /// Helper for opening/closing instructions box.
+        /// </summary>
+        /// <param name="isOpen"></param>
+        private void OpenCloseInstructions(bool isOpen)
+        {
+            // Log based on open or close.
+            string action = isOpen ? "Opening" : "Closing";
+            Debug.Log($"{action} instructions box.");
+
+            // Animate open/close animation.
+            AnimatorInterface.SetBool(INSTRUCTION_BOX_FLAG, isOpen);
+
+            // Playing open/close audio.
+            AudioSource.PlayOneShot(OpenCloseBoxSound);
         }
     }
 }

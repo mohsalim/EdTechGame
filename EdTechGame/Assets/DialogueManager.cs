@@ -7,6 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Manages and starts given dialogues.
 /// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class DialogueManager : MonoBehaviour
 {
     /// <summary>
@@ -50,9 +51,19 @@ public class DialogueManager : MonoBehaviour
     public Animator AnimatorInterface;
 
     /// <summary>
+    /// Primary audio source object.
+    /// </summary>
+    public AudioSource AudioSource;
+
+    /// <summary>
     /// Queue of setences.
     /// </summary>
     private Queue<string> Sentences;
+
+    /// <summary>
+    /// Jingle played when code works.
+    /// </summary>
+    private AudioClip SuccesssJingle;
 
     /// <summary>
     /// Use this for initialization 
@@ -60,6 +71,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         Sentences = new Queue<string>();
+        SuccesssJingle = Resources.Load("Electric Sfx/Wav/Jingle_Win_Synth/Jingle_Win_Synth_05") as AudioClip;
     }
 
     /// <summary>
@@ -107,6 +119,9 @@ public class DialogueManager : MonoBehaviour
 
         // Show the next problem button.
         NextProblemButton.gameObject.SetActive(true);
+
+        // Play success audio.
+        AudioSource.PlayOneShot(SuccesssJingle);
     }
 
     /// <summary>
