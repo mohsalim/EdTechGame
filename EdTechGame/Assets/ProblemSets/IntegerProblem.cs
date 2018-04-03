@@ -1,9 +1,26 @@
-﻿using System;
+﻿using Assets.Tutorials;
+using System;
 
 namespace Assets.ProblemSets
 {
     public class IntegerProblem : NumberVariableProblem
     {
+        public static Dialogue GetDialogue()
+        {
+            return new Dialogue
+            {
+                name = NpcNames.BROSEPH,
+                sentences = new string[]
+                {
+                    "Now we're looking at integers. Integers are whole numbers like 1, 2, -5, etc.",
+                    "The assignment says that we to change the variable 'number' to 8.",
+                    "But bro, it also says we got to do it before printing the variable."
+                },
+                successMessage = "That seems right. You're so smart bro!",
+                sprite = NpcNames.BROSEPH_SPRITE_HAPPY
+            };
+        }
+
         public override string StartCode
         {
             get

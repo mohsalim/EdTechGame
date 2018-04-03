@@ -1,4 +1,5 @@
-﻿using Assets.ProblemSets;
+﻿using Assets.Beautifier;
+using Assets.ProblemSets;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,21 +53,25 @@ namespace Assets.Tutorials
         /// </summary>
         private static Tutorial[] Tutorials = new Tutorial[]
         {
+            // Variables and types tutorial.
+            // TODO Add arithmetics
             new Tutorial()
             {
                 Dialogues = new Queue<Dialogue>(new Dialogue[]
                 {
-                    DialogueSet.HelloWorldDialgoue(),
-                    DialogueSet.IntegerDialogue(),
-                    DialogueSet.FloatingPointDialogue(),
-                    DialogueSet.BooleanProblem()
+                    HelloWorldProblem.GetDialogue(),
+                    IntegerProblem.GetDialogue(),
+                    FloatingPointProblem.GetDialogue(),
+                    BooleanProblem.GetDialogue(),
+                    VariableTest.GetDialogue()
                 }),
                 Problems = new Queue<Problem>(new Problem[]
                 {
                     new HelloWorldProblem(),
                     new IntegerProblem(),
                     new FloatingPointProblem(),
-                    new BooleanProblem()
+                    new BooleanProblem(),
+                    new VariableTest()
                 })
             }
         };
@@ -93,6 +98,7 @@ namespace Assets.Tutorials
             FindObjectOfType<DialogueManager>().StartDialogue(currentDialogue);
 
             // Display starting code.
+            // CodeInputField.text = CodeBeautifier.Beautify(currentProblem.StartCode);
             CodeInputField.text = currentProblem.StartCode;
 
             // Update instructions.

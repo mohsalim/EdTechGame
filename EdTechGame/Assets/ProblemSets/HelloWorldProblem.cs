@@ -1,9 +1,29 @@
-﻿using System;
+﻿using Assets.Tutorials;
+using System;
 
 namespace Assets.ProblemSets
 {
     public class HelloWorldProblem : Problem
     {
+        public static Dialogue GetDialogue()
+        {
+            return new Dialogue
+            {
+                name = NpcNames.BROSEPH,
+                sentences = new string[]
+                {
+                    "Bro, did you finish the programming homework?",
+                    "I can't figure it out! Can you please help me solve it?",
+                    "Come on bro! I'll pay you back big time time.",
+                    "Brooooooooooooooooooooooooooooooooooooooooooooo, please?!",
+                    "I think we have to print 'hello word' followed by 'goodbye world', but I'm not sure how to do that! " +
+                    "The text inside quotes is referred to as strings. We can use single quotes or double quotes. Take your pick."
+                },
+                successMessage = "Nice bro! I think that was right!",
+                sprite = NpcNames.BROSEPH_SPRITE_HAPPY
+            };
+        }
+
         public override string StartCode
         {
             get
