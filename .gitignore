@@ -1,7 +1,6 @@
 # Generated from this project.
 TestAsm.exe
 
-
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -361,3 +360,8 @@ ASALocalRun/
 *.binlog
 EdTechGame/Assets/Resources/Thumbs.db
 EdTechGame/Assets/Resources/Backgrounds/Thumbs.db
+
+# Add DLL files needed for IronPython to work with Unity that may not be installed by default by another programmer.
+!EdTechGame/Assets/packages/*.dll
+# Still ignore the respective meta files.
+EdTechGame/Assets/packages/*.dll.meta
