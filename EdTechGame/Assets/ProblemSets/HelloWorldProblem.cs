@@ -1,11 +1,12 @@
 ﻿using Assets.Tutorials;
+using Assets.Utils;
 using System;
 
 namespace Assets.ProblemSets
 {
     public class HelloWorldProblem : Problem
     {
-        public static Dialogue GetDialogue()
+        public override Dialogue GetDialogue()
         {
             return new Dialogue
             {
@@ -57,11 +58,6 @@ namespace Assets.ProblemSets
             }
         }
 
-        private string[] SplitByLines(string s)
-        {
-            return s.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-        }
-
         public override bool ValidateAnswer(string codeOutput, out string hint)
         {
             if (string.IsNullOrEmpty(codeOutput))
@@ -72,8 +68,8 @@ namespace Assets.ProblemSets
 
             codeOutput = codeOutput.ToLowerInvariant().Trim();
 
-            string[] codeOutputLines = SplitByLines(codeOutput);
-            string[] answerLines = SplitByLines(this.Answer);
+            string[] codeOutputLines = StringUtils.SplitByLines(codeOutput);
+            string[] answerLines = StringUtils.SplitByLines(this.Answer);
 
             if (codeOutputLines.Length != answerLines.Length)
             {

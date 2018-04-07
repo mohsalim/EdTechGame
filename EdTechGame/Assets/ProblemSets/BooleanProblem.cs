@@ -5,7 +5,7 @@ namespace Assets.ProblemSets
 {
     public class BooleanProblem : Problem
     {
-        public static Dialogue GetDialogue()
+        public override Dialogue GetDialogue()
         {
             return new Dialogue
             {

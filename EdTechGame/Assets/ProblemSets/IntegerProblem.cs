@@ -5,7 +5,7 @@ namespace Assets.ProblemSets
 {
     public class IntegerProblem : NumberVariableProblem
     {
-        public static Dialogue GetDialogue()
+        public override Dialogue GetDialogue()
         {
             return new Dialogue
             {

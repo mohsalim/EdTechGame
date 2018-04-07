@@ -38,5 +38,11 @@ namespace Assets.ProblemSets
         /// <param name="response"></param>
         /// <returns></returns>
         public abstract bool ValidateAnswer(string codeOutput, out string hint);
+
+        /// <summary>
+        /// Gets dialogue set for this problem.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Dialogue GetDialogue();
     }
 }

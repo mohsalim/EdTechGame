@@ -8,11 +8,6 @@ namespace Assets.Tutorials
     public class Tutorial
     { 
         /// <summary>
-        /// Queue of dialogue sets.
-        /// </summary>
-        public Queue<Dialogue> Dialogues;
-
-        /// <summary>
         /// Queue of problems.
         /// </summary>
         public Queue<Problem> Problems;
@@ -27,7 +22,8 @@ namespace Assets.Tutorials
         {
             if (Problems.Peek().ValidateAnswer(codeOutput, out response))
             {
-                response = Dialogues.Peek().successMessage;
+                // It's ok to recreate dialogue set to get success message. Not much of a cost and doesn't affect reference.
+                response = Problems.Peek().GetDialogue().successMessage;
                 return true;
             }
 
@@ -41,8 +37,8 @@ namespace Assets.Tutorials
         /// <param name="problem"></param>
         public void Dequeue(out Dialogue dialogue, out Problem problem)
         {
-            dialogue = Dialogues.Dequeue();
             problem = Problems.Dequeue();
+            dialogue = problem.GetDialogue();
         }
 
         /// <summary>
@@ -51,7 +47,7 @@ namespace Assets.Tutorials
         /// <returns></returns>
         public bool IsComplete()
         {
-            return Dialogues.Count == 0 && Problems.Count == 0;
+            return Problems.Count == 0;
         }
     }
 }

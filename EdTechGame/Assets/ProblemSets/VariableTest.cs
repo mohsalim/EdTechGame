@@ -5,7 +5,7 @@ namespace Assets.ProblemSets
 {
     public class VariableTest : Problem
     {
-        public static Dialogue GetDialogue()
+        public override Dialogue GetDialogue()
         {
             return new Dialogue
             {
@@ -36,11 +36,11 @@ namespace Assets.ProblemSets
             }
         }
 
-        private static string ProblemInstructions
+        private string ProblemInstructions
         {
             get
             {
-                return $"print the integer { IntegerAnswer}, the floating point { FloatingPointAnswer}, the boolean { BooleanAnswer}, and the string '{StringAnswer}'. " +
+                return $"print the integer {IntegerAnswer}, the floating point {FloatingPointAnswer}, the boolean {BooleanAnswer}, and the string '{StringAnswer}'. " +
                     "It must be printed in that exact order. Each item must be printed on it's own line.";
             }
         }
@@ -59,7 +59,7 @@ namespace Assets.ProblemSets
         /// <summary>
         /// Integer part of the answer.
         /// </summary>
-        private static string IntegerAnswer
+        private string IntegerAnswer
         {
             get
             {
@@ -70,7 +70,7 @@ namespace Assets.ProblemSets
         /// <summary>
         /// Floating point part of the answer.
         /// </summary>
-        private static string FloatingPointAnswer
+        private string FloatingPointAnswer
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Assets.ProblemSets
         /// <summary>
         /// Boolean part of the answer.
         /// </summary>
-        private static string BooleanAnswer
+        private string BooleanAnswer
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Assets.ProblemSets
         /// <summary>
         /// String part of the answer.
         /// </summary>
-        private static string StringAnswer
+        private string StringAnswer
         {
             get
             {

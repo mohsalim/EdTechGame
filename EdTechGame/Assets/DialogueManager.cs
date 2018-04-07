@@ -66,12 +66,24 @@ public class DialogueManager : MonoBehaviour
     private AudioClip SuccesssJingle;
 
     /// <summary>
+    /// Next message sound for beginning of problem.
+    /// </summary>
+    private AudioClip NextMessageNormal;
+
+    /// <summary>
+    /// Next message sound for transitioning from end of current problem to next problem.
+    /// </summary>
+    private AudioClip NextMessageSpecial;
+
+    /// <summary>
     /// Use this for initialization 
     /// </summary>
     void Start()
     {
         Sentences = new Queue<string>();
         SuccesssJingle = Resources.Load("Electric Sfx/Wav/Jingle_Win_Synth/Jingle_Win_Synth_05") as AudioClip;
+        NextMessageNormal = Resources.Load("UI Sfx/Wav/Click_Electronic/Click_Electronic_14") as AudioClip;
+        NextMessageSpecial = Resources.Load("UI Sfx/Wav/Click_Electronic/Click_Electronic_04") as AudioClip;
     }
 
     /// <summary>
@@ -173,6 +185,9 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void DisplayNextSentence()
     {
+        // Play normal sound.
+        AudioSource.PlayOneShot(NextMessageNormal);
+
         // Get the next sentence in the queue.
         string sentence = Sentences.Dequeue();
 

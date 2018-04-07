@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Utils;
+using System;
 using System.Linq;
 
 namespace Assets.Beautifier
@@ -41,7 +42,7 @@ namespace Assets.Beautifier
         {
             string beautifedCode = "";
 
-            string[] lines = code.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            string[] lines = StringUtils.SplitByLines(code);
 
             foreach(string line in lines)
             {

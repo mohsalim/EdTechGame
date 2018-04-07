@@ -57,21 +57,14 @@ namespace Assets.Tutorials
             // TODO Add arithmetics
             new Tutorial()
             {
-                Dialogues = new Queue<Dialogue>(new Dialogue[]
-                {
-                    HelloWorldProblem.GetDialogue(),
-                    IntegerProblem.GetDialogue(),
-                    FloatingPointProblem.GetDialogue(),
-                    BooleanProblem.GetDialogue(),
-                    VariableTest.GetDialogue()
-                }),
                 Problems = new Queue<Problem>(new Problem[]
                 {
                     new HelloWorldProblem(),
                     new IntegerProblem(),
                     new FloatingPointProblem(),
                     new BooleanProblem(),
-                    new VariableTest()
+                    new VariableTest(),
+                    new ArithmeticProblem()
                 })
             }
         };
