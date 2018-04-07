@@ -79,22 +79,38 @@ namespace Assets.ProblemSets
             }
         }
 
+        private string RoundedAnswer
+        {
+            get
+            {
+                return $"10{ Environment.NewLine}-9{Environment.NewLine}-729";
+            }
+        }
+
         public override bool ValidateAnswer(string codeOutput, out string hint)
         {
+            // Empty check.
             if (string.IsNullOrEmpty(codeOutput))
             {
                 hint = NOTHING_PRINTED_HINT;
                 return false;
             }
 
+            // Trim output.
             codeOutput = codeOutput.Trim();
 
-            if (codeOutput != this.Answer)
+            // If the output isn't decimal or integer answers.
+            if (codeOutput != this.Answer && codeOutput != this.RoundedAnswer)
             {
+                // Split answer into parts. Answers should be same number of parts for both answer types.
                 string[] answerParts = StringUtils.SplitByLines(this.Answer);
-                for(int i = 0; i < answerParts.Length; i++)
+                string[] roundedAnswerParts = StringUtils.SplitByLines(this.RoundedAnswer);
+
+                // For each part.
+                for (int i = 0; i < answerParts.Length; i++)
                 {
-                    if (!codeOutput.Contains(answerParts[i]))
+                    // If it does not contain either decimal answer or rounded answer, then let player know.
+                    if (!codeOutput.Contains(answerParts[i]) && !codeOutput.Contains(roundedAnswerParts[i]))
                     {
                         hint = $"Your output is missing the solution to the {StringUtils.GetNthText(i + 1)} problem. {BasicInstruction}";
                         return false;
@@ -102,6 +118,7 @@ namespace Assets.ProblemSets
                 }
             }
 
+            // Either combination of answers will reach here.
             hint = "";
             return true;
         }

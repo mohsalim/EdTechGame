@@ -1,4 +1,5 @@
-﻿using Assets.Tutorials;
+﻿using Assets.Sprites;
+using Assets.Tutorials;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,16 @@ public class StartGameTrigger : MonoBehaviour
     public Text buttonText;
 
     /// <summary>
+    /// Audio source to play sounds.
+    /// </summary>
+    public AudioSource AudioSource;
+
+    /// <summary>
+    /// Jingle played when you click start game button.
+    /// </summary>
+    private AudioClip StartGameJingle;
+
+    /// <summary>
     /// Flag to keep track if button was click in order to start fade.
     /// </summary>
     public bool startFade = false;
@@ -33,6 +44,14 @@ public class StartGameTrigger : MonoBehaviour
     /// Has the button text been completely faded?
     /// </summary>
     private bool buttonTextFaded = false;
+
+    /// <summary>
+    /// Initializations at start.
+    /// </summary>
+    void Start()
+    {
+        StartGameJingle = Resources.Load("Electric Sfx/Wav/UI_Synth/UI_Synth_01") as AudioClip;
+    }
 
     /// <summary>
     /// Update to check if we need to fade.
@@ -92,6 +111,7 @@ public class StartGameTrigger : MonoBehaviour
     public void TriggerFade()
     {
         Debug.Log("Triggering fade.");
+        AudioSource.PlayOneShot(StartGameJingle);
         startFade = true;
     }
 }

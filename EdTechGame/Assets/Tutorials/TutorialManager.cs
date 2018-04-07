@@ -9,6 +9,16 @@ namespace Assets.Tutorials
     public class TutorialManager : MonoBehaviour
     {
         /// <summary>
+        /// One-way flag to used to control thank you message after completing game.
+        /// </summary>
+        private const string GAME_COMPLETE_FLAG = "GameComplete";
+
+        /// <summary>
+        /// Animator object.
+        /// </summary>
+        public Animator AnimatorInterface;
+
+        /// <summary>
         /// Input field for code.
         /// </summary>
         public InputField CodeInputField;
@@ -75,14 +85,21 @@ namespace Assets.Tutorials
         public void StartNextProblem()
         {
             Debug.Log("Starting next problem. tutorialCounter = " + tutorialCounter);
-            
-            // TODO End game screen? If the counter exceeds tutorials, then we need to end the game properly instead of letting it crash.
 
             // Hide the next problem button.
             NextProblemButton.gameObject.SetActive(false);
 
             // Display run code button.
             RunCodeButton.gameObject.SetActive(true);
+
+
+            // If the counter exceeds tutorials, then we need to end the game properly instead of letting it crash.
+            if (Tutorials.Length <= tutorialCounter)
+            {
+                Debug.Log("Ending game.");
+                AnimatorInterface.SetBool(GAME_COMPLETE_FLAG, true);
+                return;
+            }
 
             // Get the next dialogue/problem set from the current tutorial.
             Tutorials[tutorialCounter].Dequeue(out currentDialogue, out currentProblem);
