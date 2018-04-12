@@ -11,8 +11,12 @@ public class RunCodeBehavior : MonoBehaviour
 {
     /// <summary>
     /// Component to grab code from.
+    /// 
+    /// Note: we want to grab Text component from the InputField component instead of directly caching the Text component.
+    /// This is to prevent cut-off text due to cropped box of Text component.
+    /// https://forum.unity.com/threads/input-field-text-does-not-return-the-whole-thing.355042/
     /// </summary>
-    public Text inputText = null;
+    public InputField CodeInputField = null;
 
     /// <summary>
     /// Component to put output to.
@@ -41,10 +45,10 @@ public class RunCodeBehavior : MonoBehaviour
     /// </summary>
     private void RunCode()
     {
-        Debug.Log("Run Code button clicked. Input text: " + inputText.text);
+        Debug.Log("Run Code button clicked. Input text: " + CodeInputField.text);
 
         // Build and run code.
-        RunPythonCode(inputText.text);
+        RunPythonCode(CodeInputField.text);
     }
 
     /// <summary>
