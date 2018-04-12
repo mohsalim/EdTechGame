@@ -35,7 +35,9 @@ namespace Assets.ProblemSets
             {
                 Problems = new Queue<Problem>(new Problem[]
                 {
-                    new StringOperatorsProblem()
+                    new StringOperatorsProblem(),
+                    new BasicListProblem(),
+                    new AppendListProblem()
                 })
             };
         }
