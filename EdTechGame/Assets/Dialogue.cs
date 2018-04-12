@@ -2,7 +2,6 @@
 
 /// <summary>
 /// Dialogue contains sentences spoken by a certain character.
-/// TODO Make this Uppercase.
 /// </summary>
 [System.Serializable]
 public class Dialogue

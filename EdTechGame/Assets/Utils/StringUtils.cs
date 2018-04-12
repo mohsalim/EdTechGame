@@ -1,9 +1,30 @@
 ﻿using System;
+using System.Linq;
 
 namespace Assets.Utils
 {
     public class StringUtils
     {
+        /// <summary>
+        /// Python code to remove Python comments.
+        /// 
+        /// https://stackoverflow.com/a/18381470/2498729
+        /// </summary>
+        private static readonly string RemovePythonCommentsCodeString =
+            $"def remove_comments(string):{Environment.NewLine}" +
+            $"   pattern = r\"(\".*?\"|\'.*?\')|(/\\*.*?\\*/|//[^\r\n]*$){Environment.NewLine}" +
+            $"   # first group captures quoted strings (double or single){Environment.NewLine}" +
+            $"   # second group captures comments (//single-line or /* multi-line */){Environment.NewLine}" +
+            $"   regex = re.compile(pattern, re.MULTILINE|re.DOTALL){Environment.NewLine}" +
+            $"   def _replacer(match):{Environment.NewLine}" +
+            $"       #if the 2nd group (capturing comments) is not None:{Environment.NewLine}" +
+            $"       #it means we have captured a non-quoted (real) comment string.{Environment.NewLine}" +
+            $"       if match.group(2) is not None:{Environment.NewLine}" +
+            $"           return \"\" # so we will return empty to remove the comment{Environment.NewLine}" +
+            $"       else: # otherwise, we will return the 1st group{Environment.NewLine}" +
+            $"           return match.group(1) # captured quoted-string{Environment.NewLine}" +
+            $"   return regex.sub(_replacer, string){Environment.NewLine}";
+
         /// <summary>
         /// Split string by new line character.
         /// </summary>
@@ -44,5 +65,31 @@ namespace Assets.Utils
 
             return $"{i}{suffix}";
         }
+
+        /// <summary>
+        /// Checks to see if the given lines of code has a code string that isn't in a comment.
+        /// 
+        /// TODO: This will fail if comment is in same line.
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <param name="codeString"></param>
+        /// <returns></returns>
+        public static bool HasCodeString(string[] codeLines, string codeString)
+        {
+            return codeLines.FirstOrDefault(c => !c.Trim().StartsWith("#") && c.Trim().Contains(codeString)) != null;
+        }
+
+        /// <summary>
+        /// Remove python comments
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        /*
+        public static string RemovePythonComments(string code)
+        {
+            // TODO What about single or double quotes?
+            string regexCode = $"{RemovePythonCommentsCodeString}{Environment.NewLine}print remove_comments({code})";
+        }
+        */
     }
 }

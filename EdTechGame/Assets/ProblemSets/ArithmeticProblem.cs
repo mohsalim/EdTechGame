@@ -87,7 +87,7 @@ namespace Assets.ProblemSets
             }
         }
 
-        public override bool ValidateAnswer(string codeOutput, out string hint)
+        public override bool ValidateAnswer(string code, string codeOutput, out string hint)
         {
             // Empty check.
             if (string.IsNullOrEmpty(codeOutput))

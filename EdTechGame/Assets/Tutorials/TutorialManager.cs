@@ -1,6 +1,5 @@
 ﻿using Assets.Beautifier;
 using Assets.ProblemSets;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,20 +62,8 @@ namespace Assets.Tutorials
         /// </summary>
         private static Tutorial[] Tutorials = new Tutorial[]
         {
-            // Variables and types tutorial.
-            // TODO Add arithmetics
-            new Tutorial()
-            {
-                Problems = new Queue<Problem>(new Problem[]
-                {
-                    new HelloWorldProblem(),
-                    new IntegerProblem(),
-                    new FloatingPointProblem(),
-                    new BooleanProblem(),
-                    new VariableTest(),
-                    new ArithmeticProblem()
-                })
-            }
+            TutorialSet.GetTypesAndArithmeticTutorial(),
+            TutorialSet.GetStringsAndListsTutorial()
         };
 
         /// <summary>

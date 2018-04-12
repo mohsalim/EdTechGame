@@ -66,6 +66,5 @@ namespace Assets.Beautifier
 
             return beautifedCode;
         }
-
     }
 }

@@ -35,7 +35,7 @@
             get;
         }
 
-        public override bool ValidateAnswer(string codeOutput, out string hint)
+        public override bool ValidateAnswer(string code, string codeOutput, out string hint)
         {
             if (string.IsNullOrEmpty(codeOutput))
             {

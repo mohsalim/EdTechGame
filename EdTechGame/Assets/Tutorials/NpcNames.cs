@@ -7,6 +7,7 @@
         public const string BROSEPH_SPRITE_HAPPY = "DEVELOPERS FACES_75";
 
         public const string PROFESSOR = "Prof. Gevabad Graids";
-        public const string PROFESSOR_HINT_PREFIX = "YOU FOOL! ";
+        public const string PROFESSOR_HINT_PREFIX = "Not surprised you got it wrong. ";
+        public const string PROFESSOR_SPRITE_HAPPY = "DEVELOPERS FACES_76";
     }
 }

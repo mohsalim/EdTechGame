@@ -15,12 +15,13 @@ namespace Assets.Tutorials
         /// <summary>
         /// Attempt answer. Returns succes boolean. Outs a response (hint or success message).
         /// </summary>
+        /// <param name="code"></param>
         /// <param name="codeOutput"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public bool AttemptAnswer(string codeOutput, out string response)
+        public bool AttemptAnswer(string code, string codeOutput, out string response)
         {
-            if (Problems.Peek().ValidateAnswer(codeOutput, out response))
+            if (Problems.Peek().ValidateAnswer(code, codeOutput, out response))
             {
                 // It's ok to recreate dialogue set to get success message. Not much of a cost and doesn't affect reference.
                 response = Problems.Peek().GetDialogue().successMessage;

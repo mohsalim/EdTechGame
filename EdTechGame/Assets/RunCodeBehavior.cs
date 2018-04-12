@@ -99,7 +99,7 @@ public class RunCodeBehavior : MonoBehaviour
         if (tutorialManager.currentProblem != null)
         {
             string hint;
-            if (tutorialManager.currentProblem.ValidateAnswer(totalOutput, out hint))
+            if (tutorialManager.currentProblem.ValidateAnswer(code, totalOutput, out hint))
             {
                 dialogueManager.StartSuccessMessage(tutorialManager.currentDialogue);
             }

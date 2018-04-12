@@ -34,10 +34,11 @@ namespace Assets.ProblemSets
         /// Returns true if answer is correct.
         /// Returns false if answer is incorrect and out's a hint.
         /// </summary>
+        /// <param name="code"></param>
         /// <param name="codeOutput"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public abstract bool ValidateAnswer(string codeOutput, out string hint);
+        public abstract bool ValidateAnswer(string code, string codeOutput, out string hint);
 
         /// <summary>
         /// Gets dialogue set for this problem.
