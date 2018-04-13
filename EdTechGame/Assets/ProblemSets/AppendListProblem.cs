@@ -14,11 +14,11 @@ namespace Assets.ProblemSets
                 sentences = new string[]
                 {
                     $"{WhisperPrefix}Oh man this task looks so freaking hard...",
-                    "I hope I can figure it out. We have to append to a list. Appending is adding an item to the list at the end of the list I think.",
-                    "I think I have to use the append() method. This is different from len() function. " +
+                    $"{WhisperPrefix}I hope I can figure it out. We have to append to a list. Appending is adding an item to the list at the end of the list I think.",
+                    $"{WhisperPrefix}I think I have to use the append() method. This is different from len() function. " +
                     "The len() function wraps around the variable whereas the append() method comes after variable connected by a period. " +
-                    "For example, if the list variable was 'x' then I would do len(x) for length and x.appen(1) to add 1 the list named 'x'.",
-                    "len() is a function because it attaches to no variable and append() is a method because it attaches to a variable (or object).",
+                    "For example, if the list variable was 'x' then I would do len(x) for length and x.append(1) to add 1 the list named 'x'.",
+                    $"{WhisperPrefix}len() is a function because it attaches to no variable and append() is a method because it attaches to a variable (or object).",
                     this.TaskInstruction
 
                 },

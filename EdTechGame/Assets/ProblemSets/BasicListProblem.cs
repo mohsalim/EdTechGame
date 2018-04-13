@@ -53,7 +53,7 @@ namespace Assets.ProblemSets
         {
             get
             {
-                return $"['first', 5000, True, 5000]{Environment.NewLine}True{Environment.NewLine}4";
+                return $"['first', 5000, False, 5000]{Environment.NewLine}False{Environment.NewLine}4";
             }
         }
 
@@ -103,7 +103,7 @@ namespace Assets.ProblemSets
                 return false;
             }
 
-            // Make sure list has exactly 4 items: ['first', 5000, True, 5000].
+            // Make sure list has exactly 4 items: ['first', 5000, False, 5000].
             string[] listParts = codeOutputLines[0].Split(',');
             if (listParts.Length != 4)
             {
@@ -112,7 +112,7 @@ namespace Assets.ProblemSets
             }
 
             // Check to see which is incorrect from the list.
-            string[] listAnswers = { "['first'", " 5000", " True", " 5000" };
+            string[] listAnswers = { "['first'", " 5000", " False", " 5000]" };
             for (int i = 0; i < listParts.Length; i++)
             {
                 if (listParts[i] != listAnswers[i])
@@ -123,7 +123,7 @@ namespace Assets.ProblemSets
             }
 
             // Is the user not getting the third item?
-            if (codeOutputLines[1] != "True")
+            if (codeOutputLines[1] != "False")
             {
                 hint = $"Your must index the 3rd item in the list. Remember that Python is 0-based. This means that first item has 0 index, second item has 1 index, and so on. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
                 return false;
