@@ -115,8 +115,31 @@ namespace Assets.ProblemSets
                 return false;
             }
 
-            // TODO Check each item before length and let them know ith append is wrong.
-            // TODO Check length and let them know it's wrong.
+            // Check each item before length and let them know ith append is wrong.
+            string[] answerParts = StringUtils.SplitByLines(Answer);
+            for (int i = 0; i < answerParts.Length; i++)
+            {
+                if (answerParts[i] != codeOutputLines[i])
+                {
+                    // Check empty array.
+                    if (i == 0)
+                    {
+                        hint = $"{WhisperPrefix}My code doesn't print the empty list first. {this.TaskInstruction}";
+                    }
+                    // Check length.
+                    else if (i == answerParts.Length - 1)
+                    {
+                        hint = $"{WhisperPrefix}My code doesn't print the list length last. {this.TaskInstruction}";
+                    }
+                    // Check appending of list.
+                    else
+                    {
+                        hint = $"{WhisperPrefix}My code doesn't print the list after appending the {StringUtils.GetNthText(i)} item. {this.TaskInstruction}";
+                    }
+
+                    return false;
+                }
+            }
 
             // Some unknown use case occurred.
             hint = $"{WhisperPrefix}Your output seems incorrect. {this.TaskInstruction}";
