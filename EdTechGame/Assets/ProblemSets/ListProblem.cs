@@ -16,8 +16,17 @@ namespace Assets.ProblemSets
                     "This means that if you want to access the first item in the list, its index will be 0. " +
                     $"If you want to access the second item in the list, its index will be 1. And so on.{Environment.NewLine}{Environment.NewLine}" +
                     "Additionally, you can create an empty list and add items to it." +
-                    $"Here is an example of how to build a list using the method 'append'. {Environment.NewLine}{Environment.NewLine}{AppendStartCode}{Environment.NewLine}";
+                    $"Here is an example of how to build a list using the method 'append'. {Environment.NewLine}{Environment.NewLine}{AppendStartCode}{Environment.NewLine}" +
+                    $"{TaskInstruction}";
             }
+        }
+
+        /// <summary>
+        /// Will be appended to shared instruction set.
+        /// </summary>
+        protected abstract string TaskInstruction
+        {
+            get;
         }
 
         protected string BasicStartCode
@@ -27,7 +36,8 @@ namespace Assets.ProblemSets
                 return $"mylist = [1,2,3]{Environment.NewLine}" +
                     $"print mylist[0] # Lists are 0-based so this will get the first element which is 1.{Environment.NewLine}" +
                     $"mylist[0] = 5 # You can change the value at a specific index.{Environment.NewLine}" +
-                    $"print mylist # You can print the entire list.{Environment.NewLine}";
+                    $"print mylist # You can print the entire list.{Environment.NewLine}" +
+                    $"print len(mylist) # You can print the number of items (or length) of the list.";
             }
         }
 

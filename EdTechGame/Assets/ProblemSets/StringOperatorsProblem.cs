@@ -21,8 +21,7 @@ namespace Assets.ProblemSets
                     
                 },
                 successMessage = "I'm surprised you actually got that right... " +
-                "For the next task, you must work alone AND you must print out your code and submit it to me! " +
-                "I am old school like that...and it's easier on my eyes...",
+                "The next task won't be as easy, so wipe that smirk off your face!!",
                 sprite = NpcNames.PROFESSOR_SPRITE_HAPPY
             };
         }

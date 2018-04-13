@@ -13,6 +13,14 @@ namespace Assets.ProblemSets
             throw new NotImplementedException();
         }
 
+        protected override string TaskInstruction
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override string StartCode
         {
             get
