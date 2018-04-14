@@ -52,7 +52,52 @@ namespace Assets.ProblemSets
         {
             get
             {
-                throw new NotImplementedException();
+                return $"For this task, you have to write 3 functions. " +
+                    $"1st function should be called '{BasicMultiplicationFunctionName}' and will print the multiplication of {MultipleA} and {MultipleB}." +
+                    $"2nd function should be called '{ArgMultiplicationFunctionName}', will have 2 parameters, and will print the multiplication of the 2 parameters." +
+                    $"3rd function should be called '{ArgReturnMultiplicationFunctionName}', will have 2 parameters, and will return the multiplication of the 2 parameters." +
+                    $"Call all 3 functions. For {ArgMultiplicationFunctionName}() pass in {MultipleA} and {MultipleB}. " +
+                    $"For {ArgReturnMultiplicationFunctionName}() pass in {MultipleA} and {MultipleB} and print the returned value.";
+            }
+        }
+
+        private string MultipleA
+        {
+            get
+            {
+                return "5";
+            }
+        }
+
+        private string MultipleB
+        {
+            get
+            {
+                return "8";
+            }
+        }
+
+        private string BasicMultiplicationFunctionName
+        {
+            get
+            {
+                return "basic_mult";
+            }
+        }
+
+        private string ArgMultiplicationFunctionName
+        {
+            get
+            {
+                return "arg_mult";
+            }
+        }
+
+        private string ArgReturnMultiplicationFunctionName
+        {
+            get
+            {
+                return "arg_return_mult";
             }
         }
 
@@ -68,7 +113,7 @@ namespace Assets.ProblemSets
         {
             get
             {
-                throw new NotImplementedException();
+                return $"40{Environment.NewLine}40{Environment.NewLine}40";
             }
         }
 
