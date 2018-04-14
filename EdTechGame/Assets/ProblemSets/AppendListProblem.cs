@@ -37,7 +37,7 @@ namespace Assets.ProblemSets
             }
         }
 
-        protected override string TaskInstructions
+        public override string TaskInstructions
         {
             get
             {

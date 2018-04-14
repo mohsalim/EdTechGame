@@ -58,13 +58,15 @@ namespace Assets.Tutorials
         private int tutorialCounter = 0;
 
         /// <summary>
-        /// Array of tutorials for the entire game.
+        /// Array of tutorials for the entire game. 
+        /// In terms of the story design document, these are the "Scenes". Ideally, I should use the built-in scene manager.
         /// </summary>
         private static Tutorial[] Tutorials = new Tutorial[]
         {
             TutorialSet.GetTypesAndArithmeticTutorial(),
             TutorialSet.GetStringsAndListsTutorial(),
-            TutorialSet.GetLoopsTutorial()
+            TutorialSet.GetLoopsTutorial(),
+            TutorialSet.GetFunctionsTutorial()
         };
 
         /// <summary>

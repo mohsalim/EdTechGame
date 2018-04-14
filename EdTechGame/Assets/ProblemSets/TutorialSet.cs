@@ -62,5 +62,21 @@ namespace Assets.ProblemSets
                 })
             };
         }
+
+        /// <summary>
+        /// Functions tutorial.
+        /// </summary>
+        /// <returns></returns>
+        public static Tutorial GetFunctionsTutorial()
+        {
+            return new Tutorial()
+            {
+                Problems = new Queue<Problem>(new Problem[]
+                {
+                    new FunctionBasicsProblem(),
+                    new FunctionTest()
+                })
+            };
+        }
     }
 }
