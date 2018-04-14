@@ -39,7 +39,7 @@ namespace Assets.ProblemSets
             {
                 return $"primes = [2, 3, 5, 7]{Environment.NewLine}" +
                     $"for prime in primes:{Environment.NewLine}" +
-                    $"   print(prime){TabSpacesComment}";
+                    $"   print prime{TabSpacesComment}";
             }
         }
 
@@ -75,10 +75,10 @@ namespace Assets.ProblemSets
             {
                 return $"# Prints out the numbers 0,1,2,3,4{Environment.NewLine}" +
                     $"for x in range(5):{Environment.NewLine}" +
-                    $"   print(x){TabSpacesMessage}{Environment.NewLine}{Environment.NewLine}" +
+                    $"   print x{TabSpacesMessage}{Environment.NewLine}{Environment.NewLine}" +
                     $"# Prints out 3,4,5{Environment.NewLine}" +
                     $"for x in range(3, 6):{Environment.NewLine}" +
-                    $"   print(x){TabSpacesMessage}";
+                    $"   print x{TabSpacesMessage}";
             }
         }
     }
