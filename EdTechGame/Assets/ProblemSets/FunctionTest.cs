@@ -13,7 +13,44 @@ namespace Assets.ProblemSets
         {
             get
             {
-                throw new NotImplementedException();
+                return $"For this task, create a function called {FunctionName} that will be given a single integer parameter. " +
+                    $"Create a variable with the value 1." +
+                    $"You will iterate from 0 and up to the parameter (exclusively!). " +
+                    $"As you iterate, you set the variable to the item in the list with the variable itself (ranged product)" +
+                    $"After the loop, print your variable. " +
+                    $"Call your function with arguments: {ParamA}, {ParamB}, and {ParamC}.";
+            }
+        }
+
+        private string FunctionName
+        {
+            get
+            {
+                return "product_range";
+            }
+        }
+
+        private string ParamA
+        {
+            get
+            {
+                return "5";
+            }
+        }
+
+        private string ParamB
+        {
+            get
+            {
+                return "9";
+            }
+        }
+
+        private string ParamC
+        {
+            get
+            {
+                return "100";
             }
         }
 

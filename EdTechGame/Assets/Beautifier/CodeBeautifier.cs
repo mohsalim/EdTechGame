@@ -43,10 +43,13 @@ namespace Assets.Beautifier
             "for",
             "in",
             "while",
+            "continue",
+            "break",
             
             // Definitions
             "def",
             "return",
+            "pass",
 
             // Types
             "float",
