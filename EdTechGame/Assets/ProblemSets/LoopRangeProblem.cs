@@ -13,7 +13,7 @@ namespace Assets.ProblemSets
                 name = NpcNames.TA,
                 sentences = new string[]
                 {
-                    $"(You head straight to the TA's office after class)" +
+                    $"(You head straight to the TA's office after class) " +
                     $"Ugh, another lazy student who just wants extra credit. Why don't you do your homework and maybe you'd pass class normaly?",
                     "Bleh...I'm too busy working on my homework to help you. I don't have time to come up with a make up task for you.",
                     "(The TA yawns violently) Even if I did have time, I'm too dead tired to help...",
@@ -37,9 +37,9 @@ namespace Assets.ProblemSets
         {
             get
             {
-                return "For this task, generate a list of numbers using the range() function that go 0 to 20 (inclusively). " +
+                return "For this task, generate a list of numbers using the range() function that go 0 to 8 (inclusively). " +
                     "Iterate over the list using a for loop. " +
-                    "Inside the loop divide that iterated item from the list by 2 and print it out.";
+                    "Inside the loop divide that iterated item from the list by 2.0 and print it out.";
             }
         }
 
@@ -63,19 +63,7 @@ namespace Assets.ProblemSets
                     $"2.5{Environment.NewLine}" +
                     $"3.0{Environment.NewLine}" +
                     $"3.5{Environment.NewLine}" +
-                    $"4.0{Environment.NewLine}" +
-                    $"4.5{Environment.NewLine}" +
-                    $"5.0{Environment.NewLine}" +
-                    $"5.5{Environment.NewLine}" +
-                    $"6.0{Environment.NewLine}" +
-                    $"6.5{Environment.NewLine}" +
-                    $"7.0{Environment.NewLine}" +
-                    $"7.5{Environment.NewLine}" +
-                    $"8.0{Environment.NewLine}" +
-                    $"8.5{Environment.NewLine}" +
-                    $"9.0{Environment.NewLine}" +
-                    $"9.5{Environment.NewLine}" +
-                    $"10.0{Environment.NewLine}";
+                    $"4.0";
             }
         }
 
@@ -93,10 +81,10 @@ namespace Assets.ProblemSets
             string[] codeLines = StringUtils.SplitByLines(code);
 
             // Do we divide?
-            bool hasDivision = StringUtils.HasCodeString(codeLines, "%");
+            bool hasDivision = StringUtils.HasCodeString(codeLines, "/");
             if (!hasDivision)
             {
-                hint = $"Your code doesn't use the division (%) operator. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+                hint = $"Your code doesn't use the division (/) operator. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 

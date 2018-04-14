@@ -17,7 +17,7 @@ namespace Assets.ProblemSets
                     "For loops can iterate over a sequence of numbers using the range() functions. " +
                     "The range function returns a new list with numbers of that specified range. " +
                     "Note that the range function is zero based." +
-                    $"Here is a for loop example using the range function:{Environment.NewLine}{Environment.NewLine}{LoopRangeStartCode}{Environment.NewLine}" +
+                    $"Here is a for loop example using the range function:{Environment.NewLine}{Environment.NewLine}{LoopRangeStartCode}{Environment.NewLine}{Environment.NewLine}" +
                     $"{TaskInstructions}";
             }
         }
@@ -75,10 +75,10 @@ namespace Assets.ProblemSets
             {
                 return $"# Prints out the numbers 0,1,2,3,4{Environment.NewLine}" +
                     $"for x in range(5):{Environment.NewLine}" +
-                    $"   print x{TabSpacesMessage}{Environment.NewLine}{Environment.NewLine}" +
+                    $"   print x{TabSpacesComment}{Environment.NewLine}{Environment.NewLine}" +
                     $"# Prints out 3,4,5{Environment.NewLine}" +
                     $"for x in range(3, 6):{Environment.NewLine}" +
-                    $"   print x{TabSpacesMessage}";
+                    $"   print x{TabSpacesComment}";
             }
         }
     }

@@ -13,8 +13,7 @@ namespace Assets.ProblemSets
                 name = NpcNames.PROFESSOR,
                 sentences = new string[]
                 {
-                    $"(Next day in class)" +
-                    $"I've finished grading everyone's list assignment from yesterday. Most of you got an F as expected.",
+                    $"(Next day in class) I've finished grading everyone's list assignment from yesterday. Most of you got an F as expected.",
 
                     "(Prof. is passing back assignments one at a time)",
 
@@ -69,7 +68,7 @@ namespace Assets.ProblemSets
                     $"20{Environment.NewLine}" +
                     $"30{Environment.NewLine}" +
                     $"40{Environment.NewLine}" +
-                    $"50{Environment.NewLine}";
+                    $"50";
             }
         }
 
