@@ -2,7 +2,7 @@
 
 namespace Assets.ProblemSets
 {
-    public abstract class ListProblem : Problem
+    public abstract class ListProblem : Problem, ISharedInstructions
     {
         public override string Instructions
         {
@@ -21,10 +21,7 @@ namespace Assets.ProblemSets
             }
         }
 
-        /// <summary>
-        /// Will be appended to shared instruction set.
-        /// </summary>
-        protected abstract string TaskInstructions
+        public abstract string TaskInstructions
         {
             get;
         }
