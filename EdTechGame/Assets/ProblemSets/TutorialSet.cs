@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace Assets.ProblemSets
 {
+    /// <summary>
+    /// Set of tutoials. Tutorials based on learnpython.org.
+    /// 
+    /// https://www.learnpython.org/en/Functions
+    /// </summary>
     public class TutorialSet
     {
         /// <summary>
