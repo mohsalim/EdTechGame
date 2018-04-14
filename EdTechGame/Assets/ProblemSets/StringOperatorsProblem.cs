@@ -51,12 +51,13 @@ namespace Assets.ProblemSets
                 return string.Format(TITLE_FORMAT, "Using Operators with Strings") +
                     "Python supports concatenating strings using the addition operator. You can do this by using the plus (+) operator. " +
                     "Thinking of concatting as the 'adding' of two strings. You can add two words together. You can even add an empty space. " +
-                    $"Adding empty spaces can be very useful if you want to make your words readable when they're printed. {Environment.NewLine}{Environment.NewLine}" +
-                    $"word1 = 'hi'{Environment.NewLine}word2 = 'friend'{Environment.NewLine}words = word1 + ' ' + word2 # 'hi friend'{Environment.NewLine}{Environment.NewLine}" +
+                    $"Adding empty spaces can be very useful if you want to make your words readable when they're printed. " +
+                    StringUtils.FormatCodeBlock($"word1 = 'hi'{Environment.NewLine}word2 = 'friend'{Environment.NewLine}words = word1 + ' ' + word2 # 'hi friend'") +
                     "Additionally, Python supports multiplying strings to form a string with a repeating sequence. " +
                     "You can do this by using the multiply (*) operator. " +
-                    $"This is useful for when repeating a word multiple times without having to copy and paste the string.{Environment.NewLine}{Environment.NewLine}" +
-                    $"word1 = 'hi '{Environment.NewLine}words = word1 * 3 # 'hi hi hi '{Environment.NewLine}{Environment.NewLine}{this.TaskInstructions}";
+                    $"This is useful for when repeating a word multiple times without having to copy and paste the string." +
+                    StringUtils.FormatCodeBlock($"word1 = 'hi '{Environment.NewLine}words = word1 * 3 # 'hi hi hi '") +
+                    $"{this.TaskInstructions}";
             }
         }
 

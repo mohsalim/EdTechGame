@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Utils;
+using System;
 
 namespace Assets.ProblemSets
 {
@@ -11,12 +12,12 @@ namespace Assets.ProblemSets
                 return string.Format(TITLE_FORMAT, "Loops") +
                     "Lists are very similar to arrays. " +
                     "They can contain any type of variable, and they can contain as many variables as you wish. " +
-                    $"Here is an example of a list. {Environment.NewLine}{Environment.NewLine}{BasicStartCode}{Environment.NewLine}{Environment.NewLine}" +
+                    $"Here is an example of a list. {StringUtils.FormatCodeBlock(BasicStartCode)}" +
                     "Notice that the index is zero-based. " +
                     "This means that if you want to access the first item in the list, its index will be 0. " +
                     $"If you want to access the second item in the list, its index will be 1. And so on.{Environment.NewLine}{Environment.NewLine}" +
                     "Additionally, you can create an empty list and add items to it." +
-                    $"Here is an example of how to build a list using the method 'append'. {Environment.NewLine}{Environment.NewLine}{AppendStartCode}{Environment.NewLine}" +
+                    $"Here is an example of how to build a list using the method 'append'. {StringUtils.FormatCodeBlock(AppendStartCode)}" +
                     $"{TaskInstructions}";
             }
         }

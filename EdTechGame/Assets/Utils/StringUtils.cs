@@ -101,6 +101,16 @@ namespace Assets.Utils
         }
 
         /// <summary>
+        /// Add two new lines before and after code block.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static string FormatCodeBlock(string code)
+        {
+            return $"{Environment.NewLine}{Environment.NewLine}{code}{Environment.NewLine}{Environment.NewLine}";
+        }
+
+        /// <summary>
         /// Remove python comments
         /// </summary>
         /// <param name="code"></param>

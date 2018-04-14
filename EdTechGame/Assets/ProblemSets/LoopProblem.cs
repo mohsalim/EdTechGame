@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Utils;
+using System;
 
 namespace Assets.ProblemSets
 {
@@ -10,14 +11,14 @@ namespace Assets.ProblemSets
             {
                 return string.Format(TITLE_FORMAT, "Lists") +
                     "There are two types of loops in Python, for and while. We'll just be focusing on for loops for now. " +
-                    $"For loops iterate over a given sequence. Here is an example:{Environment.NewLine}{Environment.NewLine}{LoopBasicsStartCode}{Environment.NewLine}{Environment.NewLine}" +
+                    $"For loops iterate over a given sequence. Here is an example:{StringUtils.FormatCodeBlock(LoopBasicsStartCode)}" +
                     $"{TabSpacesMessage} If not properly tabbed or spaced over, your code may not compile or have unexpected runtime errors! " +
                     $"Tabs and spaces allow the compiler to know that the code is under a certain scope. In our case, the tabbed over code is in the scope of the for loop. " +
                     $"We'll discuss scopes in more detail later.{Environment.NewLine}{Environment.NewLine}" +
                     "For loops can iterate over a sequence of numbers using the range() functions. " +
                     "The range function returns a new list with numbers of that specified range. " +
                     "Note that the range function is zero based." +
-                    $"Here is a for loop example using the range function:{Environment.NewLine}{Environment.NewLine}{LoopRangeStartCode}{Environment.NewLine}{Environment.NewLine}" +
+                    $"Here is a for loop example using the range function:{StringUtils.FormatCodeBlock(LoopRangeStartCode)}" +
                     $"{TaskInstructions}";
             }
         }
