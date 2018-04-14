@@ -71,16 +71,14 @@ namespace Assets.ProblemSets
             string[] codeLines = StringUtils.SplitByLines(code);
 
             // Do we use len() function?
-            bool hasLengthFunction = StringUtils.HasCodeString(codeLines, "len(");
-            if (!hasLengthFunction)
+            if (!StringUtils.HasLengthFunction(codeLines))
             {
                 hint = $"Your code doesn't use the len() function. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
             // Do we index?
-            bool hasIndex = StringUtils.HasCodeString(codeLines, "[") && StringUtils.HasCodeString(codeLines, "]");
-            if (!hasIndex)
+            if (!StringUtils.HasSquareBrackets(codeLines))
             {
                 hint = $"Your code doesn't index or you don't create the list. You need to use square brackets [] to do either. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;

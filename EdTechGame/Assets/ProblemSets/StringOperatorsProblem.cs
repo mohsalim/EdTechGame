@@ -112,8 +112,8 @@ namespace Assets.ProblemSets
                 return false;
             }
 
-            bool hasSequence = StringUtils.HasCodeString(codeLines, "*");
-            if (!hasSequence)
+            // Does the code have the sequence operator (also the multiplication operator).
+            if (!StringUtils.HasStarOperator(codeLines))
             {
                 hint = $"Your code doesn't create a repeating sequence for any string. {NpcNames.PROFESSOR_HINT_PREFIX}{this.DialogueInstructions}";
                 return false;

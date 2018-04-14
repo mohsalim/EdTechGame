@@ -80,6 +80,86 @@ namespace Assets.Utils
         }
 
         /// <summary>
+        /// Does the code have star/multiplication/sequence operator (*) used?
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasStarOperator(string[] codeLines)
+        {
+            return HasCodeString(codeLines, "*");
+        }
+
+        /// <summary>
+        /// Do we use square brackets? Used for creating list or indexing.
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasSquareBrackets(string[] codeLines)
+        {
+            return HasCodeString(codeLines, "[") && HasCodeString(codeLines, "]");
+        }
+
+        /// <summary>
+        /// Do we use the def keyword for definig functions?
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasFunctionDefinition(string[] codeLines)
+        {
+            return HasCodeString(codeLines, "def ") && HasParentheses(codeLines) && HasColon(codeLines);
+        }
+
+        /// <summary>
+        /// Checks to see if we have a proper for loop.
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasForLoop(string[] codeLines)
+        {
+            return HasCodeString(codeLines, "for") && HasCodeString(codeLines, "in") && HasColon(codeLines);
+        }
+
+        /// <summary>
+        /// Does the code use the len() function?
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasLengthFunction(string[] codeLines)
+        {
+            return HasCodeString(codeLines, "len") && HasParentheses(codeLines);
+        }
+
+        /// <summary>
+        /// Does the code use the range() function?
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasRangeFunction(string[] codeLines)
+        {
+            return HasCodeString(codeLines, "range") && HasParentheses(codeLines);
+        }
+
+        /// <summary>
+        /// Do we use parantheses?
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasParentheses(string[] codeLines)
+        {
+            return HasCodeString(codeLines, "(") && HasCodeString(codeLines, ")");
+        }
+
+        /// <summary>
+        /// Does the code use colons (:)?
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasColon(string[] codeLines)
+        {
+            return HasCodeString(codeLines, ":");
+        }
+
+        /// <summary>
         /// If there are too many or too few lines, then we usually use the text "many" or "few".
         /// </summary>
         /// <param name="requiredNumberOfLines"></param>

@@ -1,4 +1,5 @@
 ﻿using Assets.Tutorials;
+using Assets.Utils;
 using System;
 
 namespace Assets.ProblemSets
@@ -119,7 +120,80 @@ namespace Assets.ProblemSets
 
         public override bool ValidateAnswer(string code, string codeOutput, out string hint)
         {
-            throw new NotImplementedException();
+            // Empty/null case.
+            if (string.IsNullOrEmpty(codeOutput))
+            {
+                hint = $"Your code isn't printing anything. {NpcNames.HACKER_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Trim and split code into code lines.
+            code = code.Trim();
+            string[] codeLines = StringUtils.SplitByLines(code);
+
+            // Do we multiply?
+            if (!StringUtils.HasStarOperator(codeLines))
+            {
+                hint = $"Your code doesn't use the multiplication (*) operator. {NpcNames.HACKER_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Do we use correct def format?
+            if (!StringUtils.HasFunctionDefinition(codeLines))
+            {
+                hint = $"Your code doesn't format and use the 'def' correctly. You need the keywords 'def', parentheses and the colon (:). For example 'def func_name():'. {NpcNames.HACKER_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Check function names.
+            string[] functionNames = new string[] { BasicMultiplicationFunctionName, ArgMultiplicationFunctionName, ArgReturnMultiplicationFunctionName };
+            foreach (string functionName in functionNames)
+            {
+                if (!StringUtils.HasCodeString(codeLines, functionName))
+                {
+                    hint = $"Your code is missing the function {functionName}. Make sure the spelling is exactly how I said it. {NpcNames.HACKER_HINT_PREFIX}{TaskInstructions}";
+                    return false;
+                }
+            }
+
+            // Check to see if the multiples are used.
+            bool hasMultiples = StringUtils.HasCodeString(codeLines, MultipleA) && StringUtils.HasCodeString(codeLines, MultipleB);
+            if (!hasMultiples)
+            {
+                hint = $"Your code is missing the integers {MultipleA} or {MultipleB} (or both). {NpcNames.HACKER_HINT_PREFIX}{TaskInstructions}";
+                return false;
+            }
+
+            // Is the answer correct?
+            codeOutput = codeOutput.Trim();
+            if (codeOutput == Answer)
+            {
+                hint = "";
+                return true;
+            }
+
+            // Make sure it's 3 lines of code.
+            string[] codeOutputLines = StringUtils.SplitByLines(codeOutput);
+            string[] answerLines = StringUtils.SplitByLines(Answer);
+            if (codeOutputLines.Length != answerLines.Length)
+            {
+                hint = $"Your output prints too {StringUtils.GetFewOrMany(answerLines.Length, codeOutputLines.Length)} things. {NpcNames.HACKER_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Find out if a specific output is wrong by line.
+            for (int i = 0; i < answerLines.Length; i++)
+            {
+                if (codeOutputLines[i] != answerLines[i])
+                {
+                    hint = $"Your output prints the wrong {StringUtils.GetNthText(i + 1)} item. {NpcNames.HACKER_HINT_PREFIX}{this.TaskInstructions}";
+                    return false;
+                }
+            }
+
+            // Some other unknown error.
+            hint = $"Your output seems wrong. {NpcNames.HACKER_HINT_PREFIX}{this.TaskInstructions}";
+            return false;
         }
     }
 }

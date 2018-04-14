@@ -83,8 +83,7 @@ namespace Assets.ProblemSets
             string[] codeLines = StringUtils.SplitByLines(code);
 
             // Do we use len() function?
-            bool hasLengthFunction = StringUtils.HasCodeString(codeLines, "len(");
-            if (!hasLengthFunction)
+            if (!StringUtils.HasLengthFunction(codeLines))
             {
                 hint = $"{WhisperPrefix}Your code doesn't use the len() function. {this.TaskInstructions}";
                 return false;

@@ -86,24 +86,21 @@ namespace Assets.ProblemSets
             string[] codeLines = StringUtils.SplitByLines(code);
 
             // Do we multiply?
-            bool hasMultiplication = StringUtils.HasCodeString(codeLines, "*");
-            if (!hasMultiplication)
+            if (!StringUtils.HasStarOperator(codeLines))
             {
                 hint = $"Your code doesn't use the multiplication (*) operator. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
             // Do we square brackets for list?
-            bool createsList = StringUtils.HasCodeString(codeLines, "[") && StringUtils.HasCodeString(codeLines, "]");
-            if (!createsList)
+            if (!StringUtils.HasSquareBrackets(codeLines))
             {
                 hint = $"Your code doesn't seem to create the list. You need to use square brackets [] when creating a list. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
             // Do we use the proper for loop.
-            bool usesProperForLoop = StringUtils.HasCodeString(codeLines, "for") && StringUtils.HasCodeString(codeLines, "in") && StringUtils.HasCodeString(codeLines, ":");
-            if (!usesProperForLoop)
+            if (!StringUtils.HasForLoop(codeLines))
             {
                 hint = $"Your code doesn't format and use the for loop correctly. You need the keywords 'for' and 'in' as well as the colon (:). For example 'for x in xs:'. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
