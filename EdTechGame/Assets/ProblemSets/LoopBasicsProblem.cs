@@ -1,4 +1,5 @@
 ﻿using Assets.Tutorials;
+using Assets.Utils;
 using System;
 
 namespace Assets.ProblemSets
@@ -74,7 +75,71 @@ namespace Assets.ProblemSets
 
         public override bool ValidateAnswer(string code, string codeOutput, out string hint)
         {
-            throw new NotImplementedException();
+            // Empty/null case.
+            if (string.IsNullOrEmpty(codeOutput))
+            {
+                hint = $"Your code isn't printing anything. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Trim and split code into code lines.
+            code = code.Trim();
+            string[] codeLines = StringUtils.SplitByLines(code);
+
+            // Do we multiply?
+            bool hasMultiplication = StringUtils.HasCodeString(codeLines, "*");
+            if (!hasMultiplication)
+            {
+                hint = $"Your code doesn't use the multiplication (*) operator. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Do we square brackets for array?
+            bool createsArray = StringUtils.HasCodeString(codeLines, "[") && StringUtils.HasCodeString(codeLines, "]");
+            if (!createsArray)
+            {
+                hint = $"Your code doesn't seem to create the array. You need to use square brackets [] when creating an array. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Do we use the proper for loop.
+            bool usesProperForLoop = StringUtils.HasCodeString(codeLines, "for") && StringUtils.HasCodeString(codeLines, "in") && StringUtils.HasCodeString(codeLines, ":");
+            if (!usesProperForLoop)
+            {
+                hint = $"Your code doesn't format and use the for loop correctly. You need the keywords 'for' and 'in' as well as the colon (:). For example 'for x in xs:'. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Is the answer correct?
+            codeOutput = codeOutput.Trim();
+            if (codeOutput == Answer)
+            {
+                hint = "";
+                return true;
+            }
+
+            // Make sure it's 6 lines of code.
+            string[] codeOutputLines = StringUtils.SplitByLines(codeOutput);
+            if (codeOutputLines.Length != 6)
+            {
+                hint = $"Your output prints too {StringUtils.GetFewOrMany(6, codeOutputLines.Length)} things. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Find out if a specific output is wrong by line.
+            string[] answerLines = StringUtils.SplitByLines(Answer);
+            for (int i = 0; i < answerLines.Length; i++)
+            {
+                if (codeOutputLines[i] != answerLines[i])
+                {
+                    hint = $"Your output prints the wrong {StringUtils.GetNthText(i + 1)} item. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                    return false;
+                }
+            }
+
+            // Some other unknown error.
+            hint = $"Your output seems wrong. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+            return false;
         }
     }
 }

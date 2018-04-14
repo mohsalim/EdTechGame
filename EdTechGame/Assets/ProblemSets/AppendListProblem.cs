@@ -108,10 +108,9 @@ namespace Assets.ProblemSets
 
             // Make sure it's 7 lines of code.
             string[] codeOutputLines = StringUtils.SplitByLines(codeOutput);
-            if (codeOutputLines.Length > 7 || codeOutputLines.Length < 7)
+            if (codeOutputLines.Length != 7)
             {
-                string manyOrFew = codeOutputLines.Length > 7 ? "many" : "few";
-                hint = $"{WhisperPrefix}My code prints too {manyOrFew} things. {this.TaskInstructions}";
+                hint = $"{WhisperPrefix}My code prints too {StringUtils.GetFewOrMany(7, codeOutputLines.Length)} things. {this.TaskInstructions}";
                 return false;
             }
 

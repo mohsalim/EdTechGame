@@ -80,6 +80,27 @@ namespace Assets.Utils
         }
 
         /// <summary>
+        /// If there are too many or too few lines, then we usually use the text "many" or "few".
+        /// </summary>
+        /// <param name="requiredNumberOfLines"></param>
+        /// <param name="actualNumberOfLines"></param>
+        /// <returns></returns>
+        public static string GetFewOrMany(int requiredNumberOfLines, int actualNumberOfLines)
+        {
+            if (actualNumberOfLines > requiredNumberOfLines)
+            {
+                return "many";
+            }
+
+            if (actualNumberOfLines < requiredNumberOfLines)
+            {
+                return "few";
+            }
+
+            throw new ArgumentException($"requiredNumberOfLines {requiredNumberOfLines} cannot be equal to actualNumberOfLines {actualNumberOfLines}.");
+        }
+
+        /// <summary>
         /// Remove python comments
         /// </summary>
         /// <param name="code"></param>

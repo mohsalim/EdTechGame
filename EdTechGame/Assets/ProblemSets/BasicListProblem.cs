@@ -96,10 +96,9 @@ namespace Assets.ProblemSets
 
             // Make sure it's 3 lines of code.
             string[] codeOutputLines = StringUtils.SplitByLines(codeOutput);
-            if (codeOutputLines.Length > 3 || codeOutputLines.Length < 3)
+            if (codeOutputLines.Length != 3)
             {
-                string manyOrFew = codeOutputLines.Length > 3 ? "many" : "few";
-                hint = $"Your code prints too {manyOrFew} things. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                hint = $"Your code prints too {StringUtils.GetFewOrMany(3, codeOutputLines.Length)} things. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
