@@ -13,5 +13,9 @@
         public const string TA = "TA Ova Wurkt";
         public const string TA_HINT_PREFIX = "Ugh, they don't pay me enough for this... ";
         public const string TA_SPRITE_UPSET = "DEVELOPERS FACES_77";
+
+        public const string HACKER = "@n0n_h@ck3r";
+        public const string HACKER_HINT_PREFIX = "SMFH. ";
+        public const string HACKER_SPRITE_EVIL = "BLACK HAIR FACES_0";
     }
 }
