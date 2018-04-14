@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Beautifier;
+using System;
 using System.Linq;
 
 namespace Assets.Utils
@@ -187,7 +188,7 @@ namespace Assets.Utils
         /// <returns></returns>
         public static string FormatCodeBlock(string code)
         {
-            return $"{Environment.NewLine}{Environment.NewLine}{code}{Environment.NewLine}{Environment.NewLine}";
+            return $"{Environment.NewLine}{Environment.NewLine}{CodeBeautifier.Beautify(code)}{Environment.NewLine}{Environment.NewLine}";
         }
 
         /// <summary>

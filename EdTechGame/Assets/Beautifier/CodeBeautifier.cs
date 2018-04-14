@@ -13,24 +13,49 @@ namespace Assets.Beautifier
         /// <summary>
         /// Key word format. Such as "if" or "True".
         /// </summary>
-        protected const string KEY_WORD_FORMAT = "<color=#00ffffff>{0}</color>";
+        protected const string KEY_WORD_FORMAT = "<color=#E39C44FF>{0}</color>";
+
+        /// <summary>
+        /// Base color for code text.
+        /// </summary>
+        protected const string BASE_COLOR = "<color=#808080FF>{0}</color>";
 
         /// <summary>
         /// Key words in Python 2.7.
         /// </summary>
         protected static readonly string[] KEY_WORDS = new string[]
         {
+            // Booleans
             "True",
             "False",
+
+            // Conditions
             "if",
             "else",
             "elif",
+
+            // Logic
             "not",
             "or",
             "and",
+
+            // Loops
+            "for",
+            "in",
+            "while",
+            
+            // Definitions
+            "def",
+            "return",
+
+            // Types
             "float",
             "int",
-            "print"
+
+            // Functions
+            "print",
+            "range",
+            "len"
         };
 
         /// <summary>
@@ -53,10 +78,8 @@ namespace Assets.Beautifier
                 foreach (string part in parts)
                 {
                     // TODO: What about functions such as float(...)?
-                    beautifiedLine += KEY_WORDS.FirstOrDefault(k => k == part) == null
-                        ? part
-                        : string.Format(KEY_WORD_FORMAT, part) 
-                        + " ";              
+                    string s = KEY_WORDS.FirstOrDefault(k => k == part) == null ? part : string.Format(KEY_WORD_FORMAT, part);
+                    beautifiedLine += s + " ";              
                 }
 
                 // TODO: Trimming the end may be problematic.
@@ -64,7 +87,7 @@ namespace Assets.Beautifier
                 beautifedCode += beautifiedLine.TrimEnd() + Environment.NewLine;
             }
 
-            return beautifedCode;
+            return string.Format(BASE_COLOR, beautifedCode);
         }
     }
 }

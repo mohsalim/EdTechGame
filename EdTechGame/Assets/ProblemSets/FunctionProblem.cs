@@ -47,9 +47,9 @@ namespace Assets.ProblemSets
         {
             get
             {
-                return $"{FunctionExample}{Environment.NewLine}" +
-                    $"{FunctionWithArgsExample}{Environment.NewLine}" +
-                    $"{FunctionWithReturnExample}{Environment.NewLine}";
+                return $"{FunctionExample}{Environment.NewLine}{Environment.NewLine}" +
+                    $"{FunctionWithArgsExample}{Environment.NewLine}{Environment.NewLine}" +
+                    $"{FunctionWithReturnExample}{Environment.NewLine}{Environment.NewLine}";
             }
         }
 
@@ -61,7 +61,7 @@ namespace Assets.ProblemSets
             get
             {
                 return $"def my_function():{Environment.NewLine}" +
-                    $"   print 'Hello From My Function!'{Environment.NewLine}{Environment.NewLine}" +
+                    $"   print 'Hello From My Function!'{Environment.NewLine}" +
                     $"my_function() # Call the function after defining it.";
             }
         }
@@ -74,7 +74,7 @@ namespace Assets.ProblemSets
             get
             {
                 return $"def my_function_with_args(text):{Environment.NewLine}" +
-                    $"  print 'This is my text: ' + text{Environment.NewLine}{Environment.NewLine}" +
+                    $"  print 'This is my text: ' + text{Environment.NewLine}" +
                     $"my_function_with_args('code monkey') # Call function with argument after defining it.";
             }
         }
@@ -87,7 +87,7 @@ namespace Assets.ProblemSets
             get
             {
                 return $"def sum_two_numbers(a, b):{Environment.NewLine}" +
-                    $"  return a + b{Environment.NewLine}{Environment.NewLine}" +
+                    $"  return a + b{Environment.NewLine}" +
                     $"s = sum_two_numbers(9, 2) # Call the function after defining it and place it's returned value into a variable.{Environment.NewLine}" +
                     $"print s # Print the results returned from the newly defined function.";
             }

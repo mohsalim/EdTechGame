@@ -54,9 +54,9 @@ namespace Assets.ProblemSets
             get
             {
                 return $"For this task, you have to write 3 functions. " +
-                    $"1st function should be called '{BasicMultiplicationFunctionName}' and will print the multiplication of {MultipleA} and {MultipleB}." +
-                    $"2nd function should be called '{ArgMultiplicationFunctionName}', will have 2 parameters, and will print the multiplication of the 2 parameters." +
-                    $"3rd function should be called '{ArgReturnMultiplicationFunctionName}', will have 2 parameters, and will return the multiplication of the 2 parameters." +
+                    $"1st function should be called '{BasicMultiplicationFunctionName}' and will print the multiplication of {MultipleA} and {MultipleB}. " +
+                    $"2nd function should be called '{ArgMultiplicationFunctionName}', will have 2 parameters, and will print the multiplication of the 2 parameters. " +
+                    $"3rd function should be called '{ArgReturnMultiplicationFunctionName}', will have 2 parameters, and will return the multiplication of the 2 parameters. " +
                     $"Call all 3 functions. For {ArgMultiplicationFunctionName}() pass in {MultipleA} and {MultipleB}. " +
                     $"For {ArgReturnMultiplicationFunctionName}() pass in {MultipleA} and {MultipleB} and print the returned value.";
             }
