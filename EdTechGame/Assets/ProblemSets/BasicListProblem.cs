@@ -82,7 +82,7 @@ namespace Assets.ProblemSets
             bool hasIndex = StringUtils.HasCodeString(codeLines, "[") && StringUtils.HasCodeString(codeLines, "]");
             if (!hasIndex)
             {
-                hint = $"Your code doesn't index or you don't create the array. You need to use square brackets [] to do either. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                hint = $"Your code doesn't index or you don't create the list. You need to use square brackets [] to do either. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 

@@ -89,8 +89,8 @@ namespace Assets.ProblemSets
             }
 
             // Do we square brackets for array?
-            bool generateArray = StringUtils.HasCodeString(codeLines, "range(") && StringUtils.HasCodeString(codeLines, ")");
-            if (!generateArray)
+            bool generateList = StringUtils.HasCodeString(codeLines, "range(") && StringUtils.HasCodeString(codeLines, ")");
+            if (!generateList)
             {
                 hint = $"Your code doesn't seem to generate the list. You need to use the range() function to generate the list. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
                 return false;

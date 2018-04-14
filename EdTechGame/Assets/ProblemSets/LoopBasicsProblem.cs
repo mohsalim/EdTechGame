@@ -93,11 +93,11 @@ namespace Assets.ProblemSets
                 return false;
             }
 
-            // Do we square brackets for array?
-            bool createsArray = StringUtils.HasCodeString(codeLines, "[") && StringUtils.HasCodeString(codeLines, "]");
-            if (!createsArray)
+            // Do we square brackets for list?
+            bool createsList = StringUtils.HasCodeString(codeLines, "[") && StringUtils.HasCodeString(codeLines, "]");
+            if (!createsList)
             {
-                hint = $"Your code doesn't seem to create the array. You need to use square brackets [] when creating an array. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                hint = $"Your code doesn't seem to create the list. You need to use square brackets [] when creating a list. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 

@@ -120,7 +120,7 @@ namespace Assets.ProblemSets
             {
                 if (answerParts[i] != codeOutputLines[i])
                 {
-                    // Check empty array.
+                    // Check empty list.
                     if (i == 0)
                     {
                         hint = $"{WhisperPrefix}My code doesn't print the empty list first. {this.TaskInstructions}";
