@@ -34,7 +34,7 @@ namespace Assets.ProblemSets
                 return $"block_head:{Environment.NewLine}" +
                     $"  1st block line{Environment.NewLine}" +
                     $"  2nd block line{Environment.NewLine}" +
-                    $"  ...{Environment.NewLine}";
+                    $"  ...";
             }
         }
 
