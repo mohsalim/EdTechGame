@@ -31,7 +31,7 @@ public class RunCodeBehavior : MonoBehaviour
     /// <summary>
     /// Attach button event during initialization.
     /// </summary>
-	void Start()
+    void Start()
     {
         Button button = gameObject.GetComponent(typeof(Button)) as Button;
         if (button != null && button.onClick != null)
@@ -45,9 +45,8 @@ public class RunCodeBehavior : MonoBehaviour
     /// </summary>
     private void RunCode()
     {
-        Debug.Log("Run Code button clicked. Input text: " + CodeInputField.text);
-
         // Build and run code.
+        Debug.Log("Run Code button clicked. Input text: " + CodeInputField.text);
         RunPythonCode(CodeInputField.text);
     }
 
