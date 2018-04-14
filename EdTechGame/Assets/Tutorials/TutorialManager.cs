@@ -63,7 +63,8 @@ namespace Assets.Tutorials
         private static Tutorial[] Tutorials = new Tutorial[]
         {
             TutorialSet.GetTypesAndArithmeticTutorial(),
-            TutorialSet.GetStringsAndListsTutorial()
+            TutorialSet.GetStringsAndListsTutorial(),
+            TutorialSet.GetLoopsTutorial()
         };
 
         /// <summary>

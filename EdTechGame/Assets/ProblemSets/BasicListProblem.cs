@@ -21,7 +21,7 @@ namespace Assets.ProblemSets
                     "For example, len([1,4]) should give you 2 because there are 2 items in the list.",
                     "You can mix types in a list. For example, ['hi', 7.2, 3, True] is a valid list.",
                     "This might be over your head, so feel free to drop out of my class.",
-                    this.TaskInstruction
+                    this.TaskInstructions
 
                 },
                 successMessage = "You must have gotten help from someone... " +
@@ -31,7 +31,7 @@ namespace Assets.ProblemSets
             };
         }
 
-        protected override string TaskInstruction
+        protected override string TaskInstructions
         {
             get
             {
@@ -62,7 +62,7 @@ namespace Assets.ProblemSets
             // Empty/null case.
             if (string.IsNullOrEmpty(codeOutput))
             {
-                hint = $"Your code isn't printing anything. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+                hint = $"Your code isn't printing anything. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
@@ -74,7 +74,7 @@ namespace Assets.ProblemSets
             bool hasLengthFunction = StringUtils.HasCodeString(codeLines, "len(");
             if (!hasLengthFunction)
             {
-                hint = $"Your code doesn't use the len() function. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+                hint = $"Your code doesn't use the len() function. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
@@ -82,7 +82,7 @@ namespace Assets.ProblemSets
             bool hasIndex = StringUtils.HasCodeString(codeLines, "[") && StringUtils.HasCodeString(codeLines, "]");
             if (!hasIndex)
             {
-                hint = $"Your code doesn't index or you don't create the array. You need to use square brackets [] to do either. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+                hint = $"Your code doesn't index or you don't create the array. You need to use square brackets [] to do either. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
@@ -99,7 +99,7 @@ namespace Assets.ProblemSets
             if (codeOutputLines.Length > 3 || codeOutputLines.Length < 3)
             {
                 string manyOrFew = codeOutputLines.Length > 3 ? "many" : "few";
-                hint = $"Your code prints too {manyOrFew} things. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+                hint = $"Your code prints too {manyOrFew} things. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
@@ -107,7 +107,7 @@ namespace Assets.ProblemSets
             string[] listParts = codeOutputLines[0].Split(',');
             if (listParts.Length != 4)
             {
-                hint = $"Your list should have 4 items. It currently has {listParts.Length} items. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+                hint = $"Your list should have 4 items. It currently has {listParts.Length} items. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
@@ -117,7 +117,7 @@ namespace Assets.ProblemSets
             {
                 if (listParts[i] != listAnswers[i])
                 {
-                    hint = $"Your list's {StringUtils.GetNthText(i + 1)} item is wrong. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+                    hint = $"Your list's {StringUtils.GetNthText(i + 1)} item is wrong. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                     return false;
                 }
             }
@@ -125,19 +125,19 @@ namespace Assets.ProblemSets
             // Is the user not getting the third item?
             if (codeOutputLines[1] != "False")
             {
-                hint = $"Your must index the 3rd item in the list. Remember that Python is 0-based. This means that first item has 0 index, second item has 1 index, and so on. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+                hint = $"Your must index the 3rd item in the list. Remember that Python is 0-based. This means that first item has 0 index, second item has 1 index, and so on. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
             // Make sure the correct list length is printed.
             if (codeOutputLines[2] != "4")
             {
-                hint = $"You need to print the length of the list using the len() function. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+                hint = $"You need to print the length of the list using the len() function. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
             // Some unknown use case occurred.
-            hint = $"Your output seems incorrect. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstruction}";
+            hint = $"Your output seems incorrect. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
             return false;
         }
     }

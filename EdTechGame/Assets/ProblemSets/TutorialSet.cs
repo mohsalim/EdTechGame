@@ -41,5 +41,21 @@ namespace Assets.ProblemSets
                 })
             };
         }
+
+        /// <summary>
+        /// Loops tutorial.
+        /// </summary>
+        /// <returns></returns>
+        public static Tutorial GetLoopsTutorial()
+        {
+            return new Tutorial()
+            {
+                Problems = new Queue<Problem>(new Problem[]
+                {
+                    new LoopBasicsProblem(),
+                    new LoopRangeProblem()
+                })
+            };
+        }
     }
 }

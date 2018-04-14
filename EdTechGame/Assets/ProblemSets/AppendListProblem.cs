@@ -19,7 +19,7 @@ namespace Assets.ProblemSets
                     "The len() function wraps around the variable whereas the append() method comes after variable connected by a period. " +
                     "For example, if the list variable was 'x' then I would do len(x) for length and x.append(1) to add 1 the list named 'x'.",
                     $"{WhisperPrefix}len() is a function because it attaches to no variable and append() is a method because it attaches to a variable (or object).",
-                    this.TaskInstruction
+                    this.TaskInstructions
 
                 },
                 successMessage = $"{WhisperPrefix}I don't know any of this... (Gets up and turns to you) " +
@@ -37,7 +37,7 @@ namespace Assets.ProblemSets
             }
         }
 
-        protected override string TaskInstruction
+        protected override string TaskInstructions
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Assets.ProblemSets
             // Empty/null case.
             if (string.IsNullOrEmpty(codeOutput))
             {
-                hint = $"{WhisperPrefix}Your code isn't printing anything. {this.TaskInstruction}";
+                hint = $"{WhisperPrefix}Your code isn't printing anything. {this.TaskInstructions}";
                 return false;
             }
 
@@ -86,7 +86,7 @@ namespace Assets.ProblemSets
             bool hasLengthFunction = StringUtils.HasCodeString(codeLines, "len(");
             if (!hasLengthFunction)
             {
-                hint = $"{WhisperPrefix}Your code doesn't use the len() function. {this.TaskInstruction}";
+                hint = $"{WhisperPrefix}Your code doesn't use the len() function. {this.TaskInstructions}";
                 return false;
             }
 
@@ -94,7 +94,7 @@ namespace Assets.ProblemSets
             bool hasAppend = StringUtils.HasCodeString(codeLines, ".append(");
             if (!hasAppend)
             {
-                hint = $"{WhisperPrefix}My code doesn't use the .append() method. {this.TaskInstruction}";
+                hint = $"{WhisperPrefix}My code doesn't use the .append() method. {this.TaskInstructions}";
                 return false;
             }
 
@@ -111,7 +111,7 @@ namespace Assets.ProblemSets
             if (codeOutputLines.Length > 7 || codeOutputLines.Length < 7)
             {
                 string manyOrFew = codeOutputLines.Length > 7 ? "many" : "few";
-                hint = $"{WhisperPrefix}My code prints too {manyOrFew} things. {this.TaskInstruction}";
+                hint = $"{WhisperPrefix}My code prints too {manyOrFew} things. {this.TaskInstructions}";
                 return false;
             }
 
@@ -124,17 +124,17 @@ namespace Assets.ProblemSets
                     // Check empty array.
                     if (i == 0)
                     {
-                        hint = $"{WhisperPrefix}My code doesn't print the empty list first. {this.TaskInstruction}";
+                        hint = $"{WhisperPrefix}My code doesn't print the empty list first. {this.TaskInstructions}";
                     }
                     // Check length.
                     else if (i == answerParts.Length - 1)
                     {
-                        hint = $"{WhisperPrefix}My code doesn't print the list length last. {this.TaskInstruction}";
+                        hint = $"{WhisperPrefix}My code doesn't print the list length last. {this.TaskInstructions}";
                     }
                     // Check appending of list.
                     else
                     {
-                        hint = $"{WhisperPrefix}My code doesn't print the list after appending the {StringUtils.GetNthText(i)} item. {this.TaskInstruction}";
+                        hint = $"{WhisperPrefix}My code doesn't print the list after appending the {StringUtils.GetNthText(i)} item. {this.TaskInstructions}";
                     }
 
                     return false;
@@ -142,7 +142,7 @@ namespace Assets.ProblemSets
             }
 
             // Some unknown use case occurred.
-            hint = $"{WhisperPrefix}Your output seems incorrect. {this.TaskInstruction}";
+            hint = $"{WhisperPrefix}Your output seems incorrect. {this.TaskInstructions}";
             return false;
         }
     }
