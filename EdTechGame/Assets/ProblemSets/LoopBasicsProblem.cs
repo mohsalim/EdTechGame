@@ -120,14 +120,14 @@ namespace Assets.ProblemSets
 
             // Make sure it's 6 lines of code.
             string[] codeOutputLines = StringUtils.SplitByLines(codeOutput);
-            if (codeOutputLines.Length != 6)
+            string[] answerLines = StringUtils.SplitByLines(Answer);
+            if (codeOutputLines.Length != answerLines.Length)
             {
-                hint = $"Your output prints too {StringUtils.GetFewOrMany(6, codeOutputLines.Length)} things. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
+                hint = $"Your output prints too {StringUtils.GetFewOrMany(answerLines.Length, codeOutputLines.Length)} things. {NpcNames.PROFESSOR_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 
             // Find out if a specific output is wrong by line.
-            string[] answerLines = StringUtils.SplitByLines(Answer);
             for (int i = 0; i < answerLines.Length; i++)
             {
                 if (codeOutputLines[i] != answerLines[i])

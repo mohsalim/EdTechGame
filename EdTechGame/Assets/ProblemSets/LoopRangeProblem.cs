@@ -1,4 +1,5 @@
 ﻿using Assets.Tutorials;
+using Assets.Utils;
 using System;
 
 namespace Assets.ProblemSets
@@ -36,7 +37,9 @@ namespace Assets.ProblemSets
         {
             get
             {
-                throw new NotImplementedException();
+                return "For this task, generate a list of numbers using the range() function that go 0 to 20 (inclusively). " +
+                    "Iterate over the list using a for loop. " +
+                    "Inside the loop divide that iterated item from the list by 2 and print it out.";
             }
         }
 
@@ -52,13 +55,97 @@ namespace Assets.ProblemSets
         {
             get
             {
-                throw new NotImplementedException();
+                return $"0.0{Environment.NewLine}" +
+                    $"0.5{Environment.NewLine}" +
+                    $"1.0{Environment.NewLine}" +
+                    $"1.5{Environment.NewLine}" +
+                    $"2.0{Environment.NewLine}" +
+                    $"2.5{Environment.NewLine}" +
+                    $"3.0{Environment.NewLine}" +
+                    $"3.5{Environment.NewLine}" +
+                    $"4.0{Environment.NewLine}" +
+                    $"4.5{Environment.NewLine}" +
+                    $"5.0{Environment.NewLine}" +
+                    $"5.5{Environment.NewLine}" +
+                    $"6.0{Environment.NewLine}" +
+                    $"6.5{Environment.NewLine}" +
+                    $"7.0{Environment.NewLine}" +
+                    $"7.5{Environment.NewLine}" +
+                    $"8.0{Environment.NewLine}" +
+                    $"8.5{Environment.NewLine}" +
+                    $"9.0{Environment.NewLine}" +
+                    $"9.5{Environment.NewLine}" +
+                    $"10.0{Environment.NewLine}";
             }
         }
 
         public override bool ValidateAnswer(string code, string codeOutput, out string hint)
         {
-            throw new NotImplementedException();
+            // Empty/null case.
+            if (string.IsNullOrEmpty(codeOutput))
+            {
+                hint = $"Your code isn't printing anything. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Trim and split code into code lines.
+            code = code.Trim();
+            string[] codeLines = StringUtils.SplitByLines(code);
+
+            // Do we divide?
+            bool hasDivision = StringUtils.HasCodeString(codeLines, "%");
+            if (!hasDivision)
+            {
+                hint = $"Your code doesn't use the division (%) operator. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Do we square brackets for array?
+            bool generateArray = StringUtils.HasCodeString(codeLines, "range(") && StringUtils.HasCodeString(codeLines, ")");
+            if (!generateArray)
+            {
+                hint = $"Your code doesn't seem to generate the list. You need to use the range() function to generate the list. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Do we use the proper for loop.
+            bool usesProperForLoop = StringUtils.HasCodeString(codeLines, "for") && StringUtils.HasCodeString(codeLines, "in") && StringUtils.HasCodeString(codeLines, ":");
+            if (!usesProperForLoop)
+            {
+                hint = $"Your code doesn't format and use the for loop correctly. You need the keywords 'for' and 'in' as well as the colon (:). For example 'for x in xs:'. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Is the answer correct?
+            codeOutput = codeOutput.Trim();
+            if (codeOutput == Answer)
+            {
+                hint = "";
+                return true;
+            }
+
+            // Make sure it's 6 lines of code.
+            string[] codeOutputLines = StringUtils.SplitByLines(codeOutput);
+            string[] answerLines = StringUtils.SplitByLines(Answer);
+            if (codeOutputLines.Length != answerLines.Length)
+            {
+                hint = $"Your output prints too {StringUtils.GetFewOrMany(answerLines.Length, codeOutputLines.Length)} things. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Find out if a specific output is wrong by line.
+            for (int i = 0; i < answerLines.Length; i++)
+            {
+                if (codeOutputLines[i] != answerLines[i])
+                {
+                    hint = $"Your output prints the wrong {StringUtils.GetNthText(i + 1)} item. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+                    return false;
+                }
+            }
+
+            // Some other unknown error.
+            hint = $"Your output seems wrong. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+            return false;
         }
     }
 }
