@@ -91,6 +91,16 @@ namespace Assets.Utils
         }
 
         /// <summary>
+        /// Does the code have a plus operator for adding or concatting?
+        /// </summary>
+        /// <param name="codeLines"></param>
+        /// <returns></returns>
+        public static bool HasPlusOperator(string[] codeLines)
+        {
+            return HasCodeString(codeLines, "+");
+        }
+
+        /// <summary>
         /// Do we use square brackets? Used for creating list or indexing.
         /// </summary>
         /// <param name="codeLines"></param>

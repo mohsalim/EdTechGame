@@ -88,17 +88,17 @@ namespace Assets.ProblemSets
                 return false;
             }
 
-            // Do we square brackets for array?
-            if (!StringUtils.HasRangeFunction(codeLines))
-            {
-                hint = $"Your code doesn't seem to generate the list. You need to use the range() function to generate the list. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
-                return false;
-            }
-
             // Do we use the proper for loop.
             if (!StringUtils.HasForLoop(codeLines))
             {
                 hint = $"Your code doesn't format and use the for loop correctly. You need the keywords 'for' and 'in' as well as the colon (:). For example 'for x in xs:'. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
+                return false;
+            }
+
+            // Do we the range function?
+            if (!StringUtils.HasRangeFunction(codeLines))
+            {
+                hint = $"Your code doesn't seem to generate the list. You need to use the range() function to generate the list. {NpcNames.TA_HINT_PREFIX}{this.TaskInstructions}";
                 return false;
             }
 

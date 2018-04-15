@@ -105,8 +105,7 @@ namespace Assets.ProblemSets
             code = code.Trim();
             string[] codeLines = StringUtils.SplitByLines(code);
 
-            bool hasConcat = StringUtils.HasCodeString(codeLines, "+");
-            if (!hasConcat)
+            if (!StringUtils.HasPlusOperator(codeLines))
             {
                 hint = $"Your code doesn't concat any string. {NpcNames.PROFESSOR_HINT_PREFIX}{this.DialogueInstructions}";
                 return false;

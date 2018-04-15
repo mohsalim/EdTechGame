@@ -92,13 +92,5 @@ namespace Assets.ProblemSets
                     $"print s # Print the results returned from the newly defined function.";
             }
         }
-
-        public string FunctionTestStartCode
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
     }
 }
